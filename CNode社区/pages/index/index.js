@@ -1,9 +1,15 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var Headerlist = [
+  { id: "share", title: "分享" },
+  { id: "collect", title: "收藏" },
+  { id: "history", title: "历史" },
+  { id: "news", title: "消息" },
+];
 Page({
   data: {
-    motto: 'Hello ! WelCome to WxApp',
+    Headerlist: Headerlist,
     islogin: false,
     userInfo: {}
   },
@@ -21,7 +27,6 @@ Page({
       that.setData({ islogin:true });
     }
     console.log(CuserInfo)
-
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据

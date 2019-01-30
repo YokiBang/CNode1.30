@@ -1,23 +1,19 @@
 <!--index.wxml-->
-<!-- <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view> -->
-
+<template name="Header">
+    <view class="top-bar">
+      <block wx:for="{{Headerlist}}" wx:key="">
+        <view id="{{item.id}}" data-index="{{index}}"
+              class="top-bar-item {{index == activeIndex ? 'top-bar-active' : ''}}"
+              catchtap="onTapTag">{{item.title}}</view>
+      </block>
+    </view>
+</template>
 <view class="page me">
     <view class="userinfo">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <!-- <view class="usermotto">
-        <text class="user-motto">{{motto}}</text>
-      </view> -->
+       <template is="Header" data="{{ Headerlist, activeIndex }}"/>
     </view>
-
     <navigator url="/pages/login/login" wx:if="{{islogin == false}}">
       <view class="view-cell view-cell-line">
         <view class="view-cell-primary">
@@ -27,30 +23,24 @@
         <view class="view-cell-arrow"></view>
       </view>
     </navigator>
-
     <view class="view-cell view-cell-line"  wx:if="{{islogin == true}}">
       <view class="view-cell-primary">
         <image class="view-img"   mode="scaleToFill" src="/images/icon/login.png" />
         <text class="view-name">已登录conde</text>
       </view>
     </view>
-
     <view class="about">
         <view class="about-item">
-          <text class="about-item-title">关于项目</text>
-          <text class="about-item-content">使用cnode社区api做微信小应用（实现了数据的读取、展示，滑到底部加载下一页，loading加载）</text>
+          <text class="about-item-title">关于CNODE社区</text>
+          <text class="about-item-content">CNode社区为国内最大最具影响力的 .net 开源技术社区，致力于 .net 的技术研究</text>
         </view>
         <view class="about-item">
-          <text class="about-item-title">源码地址</text>
-          <text class="about-item-content link">https://github.com/vincentSea</text>
+          <text class="about-item-title">客户端</text>
+          <text class="about-item-content link">由@soliury 开发维护，有问题请联系：https://github.com/ljq123456789</text>
         </view>
         <view class="about-item">
-          <text class="about-item-title">My GitHub</text>
-          <text class="about-item-content link">https://github.com/vincentSea</text>
-        </view>
-        <view class="about-item">
-          <text class="about-item-title">参考资料</text>
-          <text class="about-item-content link">https://github.com/coolfishstudio/wechat-webapp-cnode</text>
+          <text class="about-item-title">CNode 客户端</text>
+          <text class="about-item-content link">https://github.com/TakWolf/CNode-Material-Design ，这是 Java 原生开发的安卓客户端。</text>
         </view>
         <view class="about-item">
           <text class="about-item-title">当前版本</text>
