@@ -10,7 +10,7 @@
 </template>
 <view class="page me">
     <view class="userinfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image class="userinfo-avatar" src="http://localhost:1026{{userInfo.avatar_url}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
        <template is="Header" data="{{ Headerlist, activeIndex }}"/>
     </view>
@@ -18,7 +18,7 @@
       <view class="view-cell view-cell-line">
         <view class="view-cell-primary">
           <image class="view-img"   mode="scaleToFill" src="/images/icon/login.png" />
-          <text class="view-name">登录conde</text>
+          <text class="view-name">登录cnode</text>
         </view>
         <view class="view-cell-arrow"></view>
       </view>
@@ -26,9 +26,10 @@
     <view class="view-cell view-cell-line"  wx:if="{{islogin == true}}">
       <view class="view-cell-primary">
         <image class="view-img"   mode="scaleToFill" src="/images/icon/login.png" />
-        <text class="view-name">已登录conde</text>
+        <text class="view-name">已登录cnode</text>
       </view>
     </view>
+    
     <view class="about">
         <view class="about-item">
           <text class="about-item-title">关于CNODE社区</text>

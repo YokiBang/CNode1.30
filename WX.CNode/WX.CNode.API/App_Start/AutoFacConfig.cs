@@ -38,6 +38,7 @@ namespace WX.CNode.API
         public static void SetupResolveRules(ContainerBuilder container)
         {
             container.RegisterType<ActiveRepository>().As<IActiveRepository>();
+            container.RegisterType<AuthorRepository>().As<IAuthorRepository>();
         }
     }
 }

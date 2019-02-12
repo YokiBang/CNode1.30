@@ -23,7 +23,7 @@
       <view class="detail-post-time">楼主 发表于{{ detail.create_at }}</view>
     </view>
 
-    <view class="detail-collect-item" id="{{detail.id}}" catchtap="collect" wx:if="{{detail.is_collect == true}}">取消收藏</view>
+    <view style='width:60px;' class="detail-collect-item" id="{{detail.id}}" catchtap="collect" wx:if="{{detail.is_collect == true}}">取消收藏</view>
     <view class="detail-collect-item" id="{{detail.id}}" catchtap="collect" wx:if="{{detail.is_collect == false}}">收藏</view>
   </view>
 

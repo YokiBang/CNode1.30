@@ -20,7 +20,7 @@ namespace WX.CNode.Repository
             string sql = "select active.*,author.loginname,dataresource.avatar_url,type.tab,(select count(*) from `comment` where `comment`.ActiveID=active.id)as reply_count,(select reply_at from `comment` where `comment`.ActiveID=active.id ORDER BY(reply_at) desc limit 0,1) as last_reply_at from active join author on author.id=PublisherID join dataresource on dataresource.id=author.DataID join type on type.id=active.TypeID";
             if (tab!="all")
             {
-                sql += " where tab=" + tab;
+                sql += " where tab='" + tab+"'";
             }
 
             List<Active> activelist = new List<Active>() ;
@@ -56,6 +56,12 @@ namespace WX.CNode.Repository
             }
 
             return activelist;
+        }
+
+        public void Collect()
+        {
+            string sql = "update active set is_collect=1";
+            MySqlDapper.Execute(sql);
         }
     }
 }

@@ -22,5 +22,7 @@ namespace WX.CNode.Model
         public int DataID { get; set; }
 
         public string avatar_url { get; set; }
+
+        public bool success { get; set; }
     }
 }
