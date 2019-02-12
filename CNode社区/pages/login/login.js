@@ -13,7 +13,7 @@ Page({
  //事件处理函数
   bindKeyInput: function(e) {
     this.setData({
-      accesstoken: e.detail.value.token
+      accesstoken: e.detail.value.tokens
     })
   },
   // 验证token(登录)
@@ -23,7 +23,7 @@ Page({
     var ApiUrl = Api.accesstoken;
     if(accesstoken === "") return;
     that.setData({ loading: true });
-    Api.fetchGet(ApiUrl + "token="+accesstoken), (err, res) => {
+    Api.fetchGet(ApiUrl + "?token="+accesstoken), (err, res) => {
       if(res.success){
         var CuserInfo = {
           accesstoken: accesstoken,
@@ -47,6 +47,6 @@ Page({
           that.setData({ error: "" });
         },2000);
       }
-    })
+    }
   }
 })
