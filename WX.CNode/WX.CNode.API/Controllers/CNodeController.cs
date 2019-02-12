@@ -33,15 +33,13 @@ namespace WX.CNode.API.Controllers
             IRedisClient redisClient = RedisManager.GetClient();
             List<Active> activelist = redisClient.Get<List<Active>>("active");
             Active active = activelist.Find(m=>m.id==id);
+            ActiveService.UpdateVisit_count(id);
             return active;
         }
-
-
         //public void topic_collect()
         //{
         //    ActiveService.Collect();
         //}
-
 
         public IAuthorRepository AuthorService { get; set; }
         /// <summary>

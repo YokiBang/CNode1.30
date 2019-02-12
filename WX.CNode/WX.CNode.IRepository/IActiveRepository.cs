@@ -17,5 +17,7 @@ namespace WX.CNode.IRepository
         List<Active> GetActiveList(string tab);
 
         void Collect();
+
+        int UpdateVisit_count(int id);
     }
 }

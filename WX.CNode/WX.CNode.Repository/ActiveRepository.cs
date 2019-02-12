@@ -63,5 +63,16 @@ namespace WX.CNode.Repository
             string sql = "update active set is_collect=1";
             MySqlDapper.Execute(sql);
         }
+
+        /// <summary>
+        /// 修改访问量
+        /// </summary>
+        /// <param name="active"></param>
+        /// <returns></returns>
+        public int UpdateVisit_count(int id)
+        {
+            string sql = string.Format("update Active set visit_count=visit_count+1 where id='{0}'", id);
+            return MySqlDapper.Execute(sql);
+        }
     }
 }
