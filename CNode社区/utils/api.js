@@ -5,7 +5,7 @@ var HOST = 'http://localhost:1026/api/CNode';
 var topics = HOST + '/topics';
 //get /topic/:id 主题详情
 var topic = HOST + '/topic';
-// post /accesstoken 验证 accessToken 的正确性
+// get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
 // post /topic_collect/collect 收藏主题
 var collect = HOST + '/topic_collect/collect';
