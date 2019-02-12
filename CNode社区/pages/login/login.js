@@ -13,7 +13,7 @@ Page({
  //事件处理函数
   bindKeyInput: function(e) {
     this.setData({
-      accesstoken: e.detail.value.tokens
+      accesstoken: e.detail.value
     })
   },
   // 验证token(登录)
@@ -29,7 +29,7 @@ Page({
           accesstoken: accesstoken,
           id: res.id,
           loginname: res.loginname,
-          avatar_url: res.loginname
+          avatar_url: res.avatar_url
         };
         console.log(CuserInfo)
         wx.setStorageSync('CuserInfo', CuserInfo);
