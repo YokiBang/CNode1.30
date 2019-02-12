@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveRepository.cs" />
+    <Compile Include="AuthorRepository.cs" />
     <Compile Include="MySqlDapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

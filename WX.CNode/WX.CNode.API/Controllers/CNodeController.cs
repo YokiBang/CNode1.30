@@ -15,6 +15,7 @@ namespace WX.CNode.API.Controllers
     public class CNodeController : ApiController
     {
         public IActiveRepository ActiveService { get; set; }
+        public IAuthorRepository AuthorService { get; set; }
         [HttpGet]
         public List<Active> topics(string tab)
         {
@@ -34,6 +35,16 @@ namespace WX.CNode.API.Controllers
             Active active = activelist.Find(m=>m.id==id);
             return active;
         }
-
+        /// <summary>
+        /// 登录验证
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Author accesstoken(string token)
+        {
+            Author author = AuthorService.accesstoken(token);
+            return author;
+        }
     }
 }

@@ -56,11 +56,7 @@ module.exports = {
   collect: collect,
   de_collect: de_collect,
   reply: reply,
-
-
   // METHOD
   fetchGet: fetchGet,
   fetchPost: fetchPost
-
-
 }
