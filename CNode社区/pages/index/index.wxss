@@ -1,4 +1,26 @@
 /**index.wxss**/
+/*导航 nav*/
+.top-bar {
+  height: 72rpx;
+  background: #444;
+  width:100%;
+  position: fixed;
+  top:105px;
+  z-index:1;
+}
+.top-bar-item {
+  display:inline-block;
+  width: 185rpx;
+  color: #80bd01;
+  text-align: center;
+  /* line-height: 72rpx; */
+  font-size: 34rpx;
+}
+.top-bar-active{
+  color: #fff;
+  font-size: 36rpx;
+}
+
 .me{
   height: 100%;
 }
