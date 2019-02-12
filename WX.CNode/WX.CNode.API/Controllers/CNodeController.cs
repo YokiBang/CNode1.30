@@ -6,7 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 
 using WX.CNode.IRepository;
-using WX.CNode.Repository;
+using WX.CNode.Cache;
+using ServiceStack.Redis;
 using WX.CNode.Model;
 
 namespace WX.CNode.API.Controllers
@@ -18,13 +19,19 @@ namespace WX.CNode.API.Controllers
         public List<Active> topics()
         {
             List<Active> activelist = ActiveService.GetActiveList();
+            IRedisClient redisClient = RedisManager.GetClient();
+            redisClient.Set<List<Active>>("active", activelist);
+            redisClient.Save();
+            redisClient.Dispose();
             return activelist;
         }
 
         [HttpGet]
         public Active topic(int id)
         {
-            Active active = ActiveService.GetActiveList().Find(m=>m.id==id);
+            IRedisClient redisClient = RedisManager.GetClient();
+            List<Active> activelist = redisClient.Get<List<Active>>("active");
+            Active active = activelist.Find(m=>m.id==id);
             return active;
         }
 
