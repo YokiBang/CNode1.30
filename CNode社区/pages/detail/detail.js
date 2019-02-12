@@ -38,28 +38,28 @@ Page({
   },
 
    //收藏文章
-  //collect: function(e) {
-  //  var that = this;
-  //  var ApiUrl = Api.collect;
-  //  var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
-  // var id = e.currentTarget.id;
-  //  if(!id) return;
-  //  if(!accesstoken){
-  //   that.setData({ modalHidden: false });
-  //    return;
-  //  }
+  collect: function(e) {
+    var that = this;
+    var ApiUrl = Api.collect;
+    var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
+    var id = e.currentTarget.id;
+    if(!id) return;
+    if(!accesstoken){
+     that.setData({ modalHidden: false });
+      return;
+    }
 
-  //  Api.fetchPost(ApiUrl, { accesstoken:accesstoken, topic_id:id }, (err, res) => {
-  //    if(res.success){
-  //        var detail = that.data.detail;
-  //        detail.is_collect = true;
-  //        that.setData({
-  //        collectText: "取消收藏",
-  //          detail: detail
-  //        });
-  //    }
-  //  })
-  //},
+    Api.fetchPost(ApiUrl, { accesstoken:accesstoken, topic_id:id }, (err, res) => {
+      if(res.success){
+          var detail = that.data.detail;
+          detail.is_collect = true;
+          that.setData({
+          collectText: "取消收藏",
+            detail: detail
+          });
+      }
+    })
+  },
 
   // 点赞
   //reply: function(e) {

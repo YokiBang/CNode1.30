@@ -15,5 +15,7 @@ namespace WX.CNode.IRepository
     public interface IActiveRepository
     {
         List<Active> GetActiveList(string tab);
+
+        void Collect();
     }
 }

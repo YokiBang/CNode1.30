@@ -57,5 +57,11 @@ namespace WX.CNode.Repository
 
             return activelist;
         }
+
+        public void Collect()
+        {
+            string sql = "update active set is_collect=1";
+            MySqlDapper.Execute(sql);
+        }
     }
 }

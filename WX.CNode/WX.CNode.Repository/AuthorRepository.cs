@@ -16,10 +16,14 @@ namespace WX.CNode.Repository
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Author accesstoken(string token)
+        public Author GetAuthor(string accesstoken)
         {
-            string sql = "select *from author JOIN dataresource ON author.DataID = dataresource.id where loginname = '" + token + "'";
+            string sql = "select author.*,dataresource.avatar_url from author join dataresource on author.DataID = dataresource.id where loginname = '" + accesstoken + "'";
             Author author = MySqlDapper.Query<Author>(sql).FirstOrDefault();
+            if (author != null)
+            {
+                author.success = true;
+            }
             return author;
         }
     }

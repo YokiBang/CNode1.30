@@ -22,29 +22,29 @@ Page({
   isLogin: function() {
     var that = this;
     var accesstoken = that.data.accesstoken;
-    var ApiUrl = Api.accesstoken;
+    var ApiUrl = Api.accesstoken + "?accesstoken=" + accesstoken;
 
     if(accesstoken === "") return;
 
     that.setData({ loading: true });
 
     Api.fetchPost(ApiUrl, { accesstoken:accesstoken }, (err, res) => {
-
+      console.log(res.success);
       if(res.success){
         var CuserInfo = {
           accesstoken: accesstoken,
           id: res.id,
           loginname: res.loginname,
-          avatar_url: res.loginname
+          avatar_url: res.avatar_url
         };
         console.log(CuserInfo)
         wx.setStorageSync('CuserInfo', CuserInfo);
 
         setTimeout(function(){
           that.setData({ loading: false });
-          // wx.navigateTo({
-          //   url: '/pages/index/index'
-          // })
+           wx.navigateTo({
+             url: '/pages/index/index'
+           })
           wx.navigateBack();
         },3000);
 
