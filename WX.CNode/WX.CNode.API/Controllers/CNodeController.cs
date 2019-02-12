@@ -16,9 +16,9 @@ namespace WX.CNode.API.Controllers
     {
         public IActiveRepository ActiveService { get; set; }
         [HttpGet]
-        public List<Active> topics()
+        public List<Active> topics(string tab)
         {
-            List<Active> activelist = ActiveService.GetActiveList();
+            List<Active> activelist = ActiveService.GetActiveList(tab);
             IRedisClient redisClient = RedisManager.GetClient();
             redisClient.Set<List<Active>>("active", activelist);
             redisClient.Save();

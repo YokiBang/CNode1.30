@@ -26,7 +26,7 @@ Page({
       console.log(res);
       res.create_at = util.getDateDiff(new Date(res.create_at));
       res.replies = res.replies.map(function (item) {
-          item.create_at = util.getDateDiff(new Date(item.create_at));
+        item.reply_at = util.getDateDiff(new Date(item.reply_at));
           //item.zanNum = item.ups.length;
           return item;
       })
