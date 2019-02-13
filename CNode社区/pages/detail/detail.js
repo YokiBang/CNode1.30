@@ -60,6 +60,7 @@ Page({
       }
     })
   },
+  
 
   // 点赞
   //reply: function(e) {

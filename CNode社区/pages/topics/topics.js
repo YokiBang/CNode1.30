@@ -22,10 +22,7 @@ Page({
   },
 
   onLoad: function () {
-
     this.getData(); 
-
-
   },
 
   onPullDownRefresh: function () {
