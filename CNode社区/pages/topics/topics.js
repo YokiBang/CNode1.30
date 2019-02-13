@@ -18,11 +18,14 @@ Page({
     hidden: false,
     page: 1,
     limit: 20,
-    tab: 'all'
+    tab: 'all', modalHidden: true
   },
 
   onLoad: function () {
-    this.getData();
+
+    this.getData(); 
+
+
   },
 
   onPullDownRefresh: function () {
@@ -61,6 +64,8 @@ Page({
     var limit = that.data.limit;
     var ApiUrl = Api.topics +'?tab='+ tab +'&page='+ page +'&limit='+ limit;
 
+    
+
     that.setData({ hidden: false });
 
     if(page == 1) {
@@ -81,7 +86,17 @@ Page({
       }, 300);
     })
   },
-
+  // 关闭--模态弹窗
+  cancelChange: function () {
+    this.setData({ modalHidden: true });
+  },
+  // 确认--模态弹窗
+  confirmChange: function () {
+    this.setData({ modalHidden: true });
+    wx.navigateTo({
+      url: '/pages/login/login'
+    });
+  },
   // 滑动底部加载
   lower: function() {
     console.log('滑动底部加载', new Date());
