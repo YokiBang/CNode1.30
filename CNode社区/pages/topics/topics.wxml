@@ -6,6 +6,8 @@
   <template is="nav" data="{{ navList, activeIndex }}"/>
   <template is="list" data="{{ postsList, hidden }}"/>
 
-
+<modal hidden="{{modalHidden}}" title="消息" confirm-text="确认" cancel-text="关闭"  bindconfirm="confirmChange" bindcancel="cancelChange">
+    您还没未登录conde，是否前往认证登录？
+  </modal>
 </view>
 

@@ -75,7 +75,12 @@
 
     </view>
   </view>
-
+  <view wx:if="{{hidden}}">
+  <loading hidden="{{hidden}}">
+    加载中...
+  </loading>
+  </view>
+  
   <loading hidden="{{hidden}}">
     加载中...
   </loading>
@@ -84,5 +89,5 @@
     您还没未登录conde，是否前往认证登录？
   </modal>
 
-
+  
 </page>

@@ -39,7 +39,7 @@ Page({
           wx.navigateTo({
             url: '/pages/index/index'
           })
-          wx.navigateBack();
+          //wx.navigateBack();
         }, 3000);
       } else {
         that.setData({ error: res.error_msg });
