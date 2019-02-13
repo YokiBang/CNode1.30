@@ -15,16 +15,16 @@ namespace WX.CNode.API.Controllers
     public class CNodeController : ApiController
     {
         public IActiveRepository ActiveService { get; set; }
-        
+
         /// <summary>
         /// 加载动态的集合
         /// </summary>
         /// <param name="tab">标签</param>
         /// <returns>动态的集合</returns>
         [HttpGet]
-        public List<Active> topics(string tab,int id)
+        public List<Active> topics(string tab, int id)
         {
-            List<Active> activelist = ActiveService.GetActiveList(tab,id);
+            List<Active> activelist = ActiveService.GetActiveList(tab, id);
 
             IRedisClient redisClient = RedisManager.GetClient();
             if (activelist != redisClient.Get<List<Active>>("active"))
@@ -33,7 +33,7 @@ namespace WX.CNode.API.Controllers
                 redisClient.Save();
                 redisClient.Dispose();
             }
-            
+
             return activelist;
         }
 
@@ -47,15 +47,17 @@ namespace WX.CNode.API.Controllers
         {
             IRedisClient redisClient = RedisManager.GetClient();
             List<Active> activelist = redisClient.Get<List<Active>>("active");
-            Active active = activelist.Find(m=>m.id==id);
+            Active active = activelist.Find(m => m.id == id);
             ActiveService.UpdateVisit_count(id);
             return active;
         }
 
-        //public void topic_collect()
-        //{
-        //    ActiveService.Collect();
-        //}
+        [HttpPost]
+        public bool topic_collect(int author_id,int active_id)
+        {
+           bool result =  ActiveService.Collect(author_id, active_id);
+            return result;
+        }
 
         public IAuthorRepository AuthorService { get; set; }
 

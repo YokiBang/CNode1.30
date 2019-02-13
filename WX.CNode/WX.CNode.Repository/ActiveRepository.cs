@@ -58,10 +58,32 @@ namespace WX.CNode.Repository
             return activelist;
         }
 
-        public void Collect()
+        public bool Collect(int author_id,int active_id)
         {
-            string sql = "update active set is_collect=1";
-            MySqlDapper.Execute(sql);
+            try
+            {
+                string sql = "SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = " + active_id;
+                List<List<int>> i = MySqlDapper.Query<List<int>>(sql);
+                int count = i.FirstOrDefault().FirstOrDefault();
+                if (count > 0)
+                {
+                    string delsql = "delete from collect where  Authorid = " + author_id + " and Activeid = " + active_id;
+                    MySqlDapper.Execute(delsql);
+                }
+                else
+                {
+                    string addsql = string.Format("insert into collect(Authorid,Activeid,is_collect) values({0},{1},1)", author_id, active_id);
+                    MySqlDapper.Execute(addsql);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+          // if (("SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = active.id"))
         }
 
         /// <summary>
@@ -74,5 +96,7 @@ namespace WX.CNode.Repository
             string sql = string.Format("update Active set visit_count=visit_count+1 where id='{0}'", id);
             return MySqlDapper.Execute(sql);
         }
+
+
     }
 }
