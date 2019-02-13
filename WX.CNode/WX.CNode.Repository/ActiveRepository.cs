@@ -17,7 +17,7 @@ namespace WX.CNode.Repository
         /// <returns>返回一个集合</returns>
         public List<Active> GetActiveList(string tab)
         {
-            string sql = "select active.*,author.loginname,dataresource.avatar_url,type.tab,(select count(*) from `comment` where `comment`.ActiveID=active.id)as reply_count,(select reply_at from `comment` where `comment`.ActiveID=active.id ORDER BY(reply_at) desc limit 0,1) as last_reply_at from active join author on author.id=PublisherID join dataresource on dataresource.id=author.DataID join type on type.id=active.TypeID";
+            string sql = "select active.*,author.loginname,dataresource.avatar_url,type.tab,(select count(*) from `comment` where `comment`.ActiveID=active.id)as reply_count,(select reply_at from `comment` where `comment`.ActiveID=active.id ORDER BY(reply_at) desc limit 0,1),(SELECT is_collect from collect where Authorid = author.id and Activeid = active.id) from active join author on author.id=PublisherID join dataresource on dataresource.id=author.DataID join type on type.id=active.TypeID";
             if (tab!="all")
             {
                 sql += " where tab='" + tab+"'";
