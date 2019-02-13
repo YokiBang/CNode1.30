@@ -25,10 +25,15 @@ namespace WX.CNode.API.Controllers
         public List<Active> topics(string tab)
         {
             List<Active> activelist = ActiveService.GetActiveList(tab);
+
             IRedisClient redisClient = RedisManager.GetClient();
-            redisClient.Set<List<Active>>("active", activelist);
-            redisClient.Save();
-            redisClient.Dispose();
+            if (activelist != redisClient.Get<List<Active>>("active"))
+            {
+                redisClient.Set<List<Active>>("active", activelist);
+                redisClient.Save();
+                redisClient.Dispose();
+            }
+            
             return activelist;
         }
 
@@ -46,6 +51,7 @@ namespace WX.CNode.API.Controllers
             ActiveService.UpdateVisit_count(id);
             return active;
         }
+
         //public void topic_collect()
         //{
         //    ActiveService.Collect();
