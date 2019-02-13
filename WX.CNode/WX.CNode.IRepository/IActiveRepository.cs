@@ -16,8 +16,10 @@ namespace WX.CNode.IRepository
     {
         List<Active> GetActiveList(string tab,int id);
 
-        void Collect();
+        bool Collect(int author_id,int active_id);
 
         int UpdateVisit_count(int id);
+
+
     }
 }

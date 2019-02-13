@@ -8,9 +8,9 @@ var topic = HOST + '/topic';
 // get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
 // post /topic_collect/collect 收藏主题
-var collect = HOST + '/topic_collect/collect';
+var collect = HOST + '/topic_collect';
 // post /topic_collect/de_collect 取消主题
-var de_collect = HOST + ' /topic_collect/ ';
+var de_collect = HOST + '/topic_collect';
 // post /reply/:reply_id/ups 为评论点赞
 function reply (id) {
   return HOST + "/reply/"+ id +"/ups"

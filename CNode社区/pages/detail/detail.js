@@ -41,16 +41,17 @@ Page({
   collect: function(e) {
     var that = this;
     var ApiUrl = Api.collect;
-    var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
+    console.log(ApiUrl);
+    var accesstoken = wx.getStorageSync('CuserInfo');
     var id = e.currentTarget.id;
     if(!id) return;
-    if(!accesstoken){
+    if(!accesstoken.accesstoken){
      that.setData({ modalHidden: false });
       return;
     }
-
-    Api.fetchPost(ApiUrl, { accesstoken:accesstoken, topic_id:id }, (err, res) => {
-      if(res.success){
+    console.log('ok');
+    Api.fetchPost(ApiUrl, { author_id: accesstoken.id, active_id: id }, (err, res) => {
+      if(res){
           var detail = that.data.detail;
           detail.is_collect = true;
           that.setData({
