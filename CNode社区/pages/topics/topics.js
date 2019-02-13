@@ -18,13 +18,21 @@ Page({
     hidden: false,
     page: 1,
     limit: 20,
-    tab: 'all', modalHidden: true
+    tab: 'all',
+    modalHidden: true
   },
-
+  
   onLoad: function () {
+
+    var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
+    if (!accesstoken) {
+      this.setData({ modalHidden: false });
+      return;
+    }
+
     this.getData(); 
   },
-
+  
   onPullDownRefresh: function () {
     this.getData();
     console.log('下拉刷新', new Date());
@@ -83,17 +91,7 @@ Page({
       }, 300);
     })
   },
-  // 关闭--模态弹窗
-  cancelChange: function () {
-    this.setData({ modalHidden: true });
-  },
-  // 确认--模态弹窗
-  confirmChange: function () {
-    this.setData({ modalHidden: true });
-    wx.navigateTo({
-      url: '/pages/login/login'
-    });
-  },
+  
   // 滑动底部加载
   lower: function() {
     console.log('滑动底部加载', new Date());
@@ -106,7 +104,17 @@ Page({
     } else {
       this.getData({page: that.data.page});
     }
+  },
+  // 关闭--模态弹窗
+  cancelChange: function () {
+    this.setData({ modalHidden: true });
+  },
+  // 确认--模态弹窗
+  confirmChange: function () {
+    this.setData({ modalHidden: true });
+    wx.navigateTo({
+      url: '/pages/login/login'
+    });
   }
-
 
 })
