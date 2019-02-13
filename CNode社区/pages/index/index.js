@@ -50,7 +50,7 @@ Page({
     });
     if (tab === 'share') {
       wx.navigateTo({
-        url: '/pages/add/add'
+        url: '/pages/share/share'
       })
     } else if (tab === 'collect') {
       wx.navigateTo({
