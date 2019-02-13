@@ -16,17 +16,32 @@ namespace WX.CNode.API.Controllers
     {
         public IActiveRepository ActiveService { get; set; }
         
+        /// <summary>
+        /// 加载动态的集合
+        /// </summary>
+        /// <param name="tab">标签</param>
+        /// <returns>动态的集合</returns>
         [HttpGet]
         public List<Active> topics(string tab)
         {
             List<Active> activelist = ActiveService.GetActiveList(tab);
+
             IRedisClient redisClient = RedisManager.GetClient();
-            redisClient.Set<List<Active>>("active", activelist);
-            redisClient.Save();
-            redisClient.Dispose();
+            if (activelist != redisClient.Get<List<Active>>("active"))
+            {
+                redisClient.Set<List<Active>>("active", activelist);
+                redisClient.Save();
+                redisClient.Dispose();
+            }
+            
             return activelist;
         }
 
+        /// <summary>
+        /// 获取动态的详情
+        /// </summary>
+        /// <param name="id">动态的主键id</param>
+        /// <returns>返回单条动态信息详情</returns>
         [HttpGet]
         public Active topic(int id)
         {
@@ -36,17 +51,19 @@ namespace WX.CNode.API.Controllers
             ActiveService.UpdateVisit_count(id);
             return active;
         }
+
         //public void topic_collect()
         //{
         //    ActiveService.Collect();
         //}
 
         public IAuthorRepository AuthorService { get; set; }
+
         /// <summary>
         /// 登录验证
         /// </summary>
-        /// <param name="accesstoken"></param>
-        /// <returns></returns>
+        /// <param name="accesstoken">验证凭证</param>
+        /// <returns>登录账户信息</returns>
         [HttpPost]
         public Author accesstoken(string accesstoken)
         {
