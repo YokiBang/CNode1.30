@@ -8,6 +8,7 @@
       </block>
     </view>
 </template>
+
 <view class="page me">
     <view class="userinfo">
       <image class="userinfo-avatar" src="http://localhost:1026{{userInfo.avatar_url}}" background-size="cover"></image>
@@ -25,7 +26,7 @@
     </navigator>
     <view class="view-cell view-cell-line"  wx:if="{{islogin == true}}">
       <view class="view-cell-primary">
-        <image class="view-img"   mode="scaleToFill" src="/images/icon/login.png" />
+        <image class="view-img"  mode="scaleToFill" src="/images/icon/login.png" />
         <text class="view-name">已登录cnode</text>
       </view>
     </view>

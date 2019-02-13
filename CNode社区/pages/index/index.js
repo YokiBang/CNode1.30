@@ -38,6 +38,32 @@ Page({
         userInfo:userInfo
       })
     })
+  },
+  onTapTag: function (e) {
+    var that = this;
+    var tab = e.currentTarget.id;
+    var index = e.currentTarget.dataset.index;
+    that.setData({
+      activeIndex: index,
+      tab: tab,
+      page: 1
+    });
+    if (tab === 'share') {
+      wx.navigateTo({
+        url: '/pages/share/share'
+      })
+    } else if (tab === 'collect') {
+      wx.navigateTo({
+        url: '/pages/collect/collect'
+      })
+    } else if (tab === 'history') { 
+      wx.navigateTo({
+        url: '/pages/history/history'
+      })
+    } else if (tab === 'news') { 
+      wx.navigateTo({
+        url: '/pages/news/news'
+      })
+    }
   }
 })
-
