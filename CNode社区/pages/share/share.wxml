@@ -1,0 +1,21 @@
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view>
+<input placeholder='输入标题' placeholder-style="color:#f5f5f5;" bindinput="bindKeyInput" name="title"></input>
+</view>
+<view>
+类型：<radio-group>
+<radio value="分享">分享</radio>
+<radio value="问答">问答</radio>
+<radio value="招聘">招聘</radio>
+</radio-group>
+</view>
+<view>
+内容：<rich-text nodes="{{nodes}}" bindtap="tap"></rich-text>
+</view>
+
+
+
+</form>
+
+
