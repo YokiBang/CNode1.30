@@ -15,15 +15,15 @@ namespace WX.CNode.Repository
         /// 获取动态和相关评论的集合
         /// </summary>
         /// <returns>返回一个集合</returns>
-        public List<Active> GetActiveList(string tab)
+        public List<Active> GetActiveList(string tab, int id)
         {
-            string sql = "select active.*,author.loginname,dataresource.avatar_url,type.tab,(select count(*) from `comment` where `comment`.ActiveID=active.id)as reply_count,(select reply_at from `comment` where `comment`.ActiveID=active.id ORDER BY(reply_at) desc limit 0,1) as last_reply_at,(SELECT is_collect from collect where Authorid = author.id and Activeid = active.id) as is_collect from active join author on author.id=PublisherID join dataresource on dataresource.id=author.DataID join type on type.id=active.TypeID";
-            if (tab!="all")
+            string sql = "select active.*,author.loginname,dataresource.avatar_url,type.tab,(select count(*) from `comment` where `comment`.ActiveID=active.id)as reply_count,(select reply_at from `comment` where `comment`.ActiveID=active.id ORDER BY(reply_at) desc limit 0,1) as last_reply_at,(SELECT is_collect from collect where Authorid = " + id + " and Activeid = active.id) as is_collect from active join author on author.id=PublisherID join dataresource on dataresource.id=author.DataID join type on type.id=active.TypeID";
+            if (tab != "all")
             {
-                sql += " where tab='" + tab+"'";
+                sql += " where tab='" + tab + "'";
             }
 
-            List<Active> activelist = new List<Active>() ;
+            List<Active> activelist = new List<Active>();
             try
             {
                 activelist = MySqlDapper.Query<Active>(sql);
@@ -32,9 +32,9 @@ namespace WX.CNode.Repository
             {
                 return activelist;
             }
-            
 
-            if (activelist.Count>0)
+
+            if (activelist.Count > 0)
             {
                 foreach (var active in activelist)
                 {

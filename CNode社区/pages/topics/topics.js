@@ -19,17 +19,20 @@ Page({
     page: 1,
     limit: 20,
     tab: 'all',
-    modalHidden: true
+    modalHidden: true,
+    id:0
   },
   
   onLoad: function () {
 
-    var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
+    var accesstoken = wx.getStorageSync('CuserInfo').id;
+
     if (!accesstoken) {
       this.setData({ modalHidden: false });
+  
       return;
     }
-
+    this.setData({ id: accesstoken });
     this.getData(); 
   },
   
@@ -64,10 +67,12 @@ Page({
   //获取文章列表数据
   getData: function() {
     var that = this;
+    var id = that.data.id;
+    console.log(id);
     var tab = that.data.tab;
     var page = that.data.page;
     var limit = that.data.limit;
-    var ApiUrl = Api.topics +'?tab='+ tab +'&page='+ page +'&limit='+ limit;
+    var ApiUrl = Api.topics + '?tab=' + tab + '&page=' + page + '&limit=' + limit + '&id=' + id;
 
     
 

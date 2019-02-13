@@ -22,9 +22,9 @@ namespace WX.CNode.API.Controllers
         /// <param name="tab">标签</param>
         /// <returns>动态的集合</returns>
         [HttpGet]
-        public List<Active> topics(string tab)
+        public List<Active> topics(string tab,int id)
         {
-            List<Active> activelist = ActiveService.GetActiveList(tab);
+            List<Active> activelist = ActiveService.GetActiveList(tab,id);
 
             IRedisClient redisClient = RedisManager.GetClient();
             if (activelist != redisClient.Get<List<Active>>("active"))
