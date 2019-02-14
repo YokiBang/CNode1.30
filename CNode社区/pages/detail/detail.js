@@ -50,11 +50,10 @@ Page({
     var id = e.currentTarget.id;
     if(!id) return;
     if(!accesstoken.accesstoken){
-     that.setData({ modalHidden: false });
+      that.setData({ modalHidden: false });
       return;
     }
     var ApiUrl = Api.collect + '?author_id=' + accesstoken.id + '&active_id=' + id;
-    console.log('ok');
     Api.fetchGet(ApiUrl, (err, res) => {
       if(res){
           var detail = that.data.detail;
@@ -101,16 +100,15 @@ Page({
   // }
       if (res) {
         var detail = that.data.detail;
-       var replies = detail.replies[index];
-        detail.is_zan = false;
-        replies.zanNum = replies.zanNum - 1;
+        var replies = detail.replies[index];
+        detail.is_zan = true;
+        replies.zanNum = replies.zanNum + 1;
       }
       else {
         var detail = that.data.detail;
         var replies = detail.replies[index];
-        detail.is_zan = true;
-        replies.zanNum = replies.zanNum + 1;
-        
+        detail.is_zan = false;
+        replies.zanNum = replies.zanNum - 1;
       }
    })
   },
