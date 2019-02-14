@@ -8,7 +8,7 @@ Page({
   data: {
     title: '话题详情',
     collectText:"收藏",
-    //detail: {},
+    detail: {},
     hidden: false,
     modalHidden: true,
     is_zan:true
@@ -88,27 +88,29 @@ Page({
       return;
      }
     Api.fetchGet(ApiUrl, (err, res) => {
-      //if(res){
-      // var detail = that.data.detail;
-       //var replies = detail.replies[index];
-       // if(res.action === "up"){
-       //   replies.zanNum = replies.zanNum + 1;
-       //}else{
-       //  replies.zanNum = replies.zanNum - 1;
-       //}
-      // that.setData({ detail: detail });
-  // }
       if (res) {
         var detail = that.data.detail;
         var replies = detail.replies[index];
-        detail.is_zan = true;
+        console.log(replies);
+        replies.is_zan = true;
         replies.zanNum = replies.zanNum + 1;
+        detail.replies[index] = replies;
+        that.setData({
+          detail : detail
+          
+        })
       }
       else {
         var detail = that.data.detail;
         var replies = detail.replies[index];
-        detail.is_zan = false;
+        console.log(replies);
+        replies.is_zan = false;
         replies.zanNum = replies.zanNum - 1;
+        detail.replies[index] = replies;
+        that.setData({
+          detail: detail
+
+        })
       }
    })
   },
