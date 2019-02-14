@@ -28,7 +28,6 @@
 /*列表 list*/
 .scroll-posts-list{
   overflow: hidden;
-  
 }
 .posts-list{
   position: relative;
