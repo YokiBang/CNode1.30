@@ -12,9 +12,7 @@ var collect = HOST + '/topic_collect';
 // post /topic_collect/de_collect 取消主题
 var de_collect = HOST + '/topic_collect';
 // post /reply/:reply_id/ups 为评论点赞
-function reply (id) {
-  return HOST + "/reply/"+ id +"/ups"
-}
+var zan = HOST + "/zan";
 
 // get请求方法
 function fetchGet(url, callback) {
@@ -55,7 +53,7 @@ module.exports = {
   accesstoken: accesstoken,
   collect: collect,
   de_collect: de_collect,
-  reply: reply,
+  zan: zan,
   // METHOD
   fetchGet: fetchGet,
   fetchPost: fetchPost

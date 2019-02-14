@@ -39,6 +39,7 @@ namespace WX.CNode.API
         {
             container.RegisterType<ActiveRepository>().As<IActiveRepository>();
             container.RegisterType<AuthorRepository>().As<IAuthorRepository>();
+            container.RegisterType<CommentRepository>().As<ICommentRepository>();
         }
     }
 }

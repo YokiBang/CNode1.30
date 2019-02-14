@@ -52,6 +52,12 @@ namespace WX.CNode.API.Controllers
             return active;
         }
 
+        /// <summary>
+        /// 收藏
+        /// </summary>
+        /// <param name="author_id"></param>
+        /// <param name="active_id"></param>
+        /// <returns></returns>
         [HttpGet]
         public bool topic_collect(int author_id,int active_id)
         {
@@ -71,6 +77,15 @@ namespace WX.CNode.API.Controllers
         {
             Author author = AuthorService.GetAuthor(accesstoken);
             return author;
+        }
+
+        public ICommentRepository CommentServices { get; set; }
+
+        [HttpGet]
+        public bool zan(int authorid,int commentid)
+        {
+            bool result = CommentServices.zan(authorid,commentid);
+            return result;
         }
     }
 }
