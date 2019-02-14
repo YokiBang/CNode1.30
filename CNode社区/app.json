@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/history/history",
     "pages/topics/topics",
     "pages/detail/detail",
     "pages/login/login",
@@ -7,7 +8,7 @@
     "pages/logs/logs",
     "pages/share/share",
     "pages/collect/collect",
-    "pages/history/history",
+    
     "pages/news/news"
   ],
   "window": {
