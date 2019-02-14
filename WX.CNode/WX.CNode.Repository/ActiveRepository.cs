@@ -87,7 +87,5 @@ namespace WX.CNode.Repository
             string sql = string.Format("update Active set visit_count=visit_count+1 where id='{0}'", id);
             return MySqlDapper.Execute(sql);
         }
-
-
     }
 }
