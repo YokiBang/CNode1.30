@@ -19,7 +19,6 @@ namespace WX.CNode.Repository
         //未设置配置文件使用下面的连接字符串
         //public static string connectionStrings = "server=169.254.205.75;user id=FiveGroup;database=laowutongdb;password=123456";
         public static string connectionStrings = ConfigurationManager.ConnectionStrings["cnode"].ConnectionString;
-
         /// <summary>
         /// 得到受影响行数
         /// </summary>

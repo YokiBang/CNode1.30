@@ -1,5 +1,4 @@
 <!--列表list组件 -->
-<template name="list">
 <scroll-view class="scroll-posts-list"  scroll-y="true" style="height:100%"  bindscrolltolower="lower">
   <view class="postslist">
     <block wx:for="{{postsList}}"  wx:key="">
@@ -52,8 +51,5 @@
   </view>
 </scroll-view>
 
-<loading class="loading" hidden="{{hidden}}">
-  <text class="loading-font">加载中...</text>
-</loading>
 
-</template>
+
