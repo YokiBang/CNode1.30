@@ -11,7 +11,7 @@
     </radio-group>
   </view>
   <view class="container">
-     <input placeholder='输入内容' placeholder-style="color:#f6f6f6;" bindinput="bindKeyInput"        name="container"></input>
+     <input placeholder='输入内容' placeholder-style="color:#f6f6f6;" bindinput="bindKeyInput" name="container"></input>
   </view>
   <button class='submit'>添加</button>
 </form>
