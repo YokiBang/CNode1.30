@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WX.CNode.Model;
-using WX.CNode.IRepository;
-
 namespace WX.CNode.Repository
 {
+    using WX.CNode.Model;
+    using WX.CNode.IRepository;
     public class AuthorRepository:IAuthorRepository
     {
         /// <summary>

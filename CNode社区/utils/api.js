@@ -5,6 +5,8 @@ var HOST = 'http://localhost:1026/api/CNode';
 var topics = HOST + '/topics';
 //get /topic/:id 主题详情
 var topic = HOST + '/topic';
+//get /collectid 用户id收藏
+var collectid = HOST + '/collectid';
 // get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
 // post /topic_collect/collect 收藏主题
@@ -12,9 +14,7 @@ var collect = HOST + '/topic_collect';
 // post /topic_collect/de_collect 取消主题
 var de_collect = HOST + '/topic_collect';
 // post /reply/:reply_id/ups 为评论点赞
-function reply (id) {
-  return HOST + "/reply/"+ id +"/ups"
-}
+var zan = HOST + "/zan";
 
 // get请求方法
 function fetchGet(url, callback) {
@@ -55,7 +55,7 @@ module.exports = {
   accesstoken: accesstoken,
   collect: collect,
   de_collect: de_collect,
-  reply: reply,
+  zan: zan,
   // METHOD
   fetchGet: fetchGet,
   fetchPost: fetchPost

@@ -55,8 +55,18 @@
                 <view class="detail-post-comment-time">{{index + 1}}楼 发表于{{ item.reply_at }}</view>
               </view>
               <view class="detail-post-comment-info-cell" style="text-align:right" id="{{item.id}}" data-index="{{index}}" catchtap="reply">
-                <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zan.png"></image>
-                <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
+
+                <view wx:if="{{item.is_zan == false}}">
+                 <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zan.png"></image>
+                 <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
+                </view>
+                <view wx:if="{{item.is_zan == true}}">
+                 <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zanhl.png"></image>
+                 <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
+                </view>
+
+
+                
               </view>
             </view>
             <view class="detail-comment-content">

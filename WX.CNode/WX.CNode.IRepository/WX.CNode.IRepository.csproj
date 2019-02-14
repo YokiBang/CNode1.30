@@ -82,6 +82,8 @@
   <ItemGroup>
     <Compile Include="IActiveRepository.cs" />
     <Compile Include="IAuthorRepository.cs" />
+    <Compile Include="ICommentRepository.cs" />
+    <Compile Include="ICollectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

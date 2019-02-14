@@ -42,7 +42,7 @@ namespace WX.CNode.Repository
                     active.author.avatar_url = active.avatar_url;
                     active.author.loginname = active.loginname;
 
-                    string sql2 = "select `comment`.*,author.loginname,dataresource.avatar_url from `comment` join author on author.id=`comment`.AuthorID join dataresource on dataresource.id=author.DataID where ActiveID=" + active.id;
+                    string sql2 = "select `comment`.*,author.loginname,dataresource.avatar_url,(select is_zan from clickgood where Authorid = "+id+" and Commentid = comment.id ) as is_zan,(select count(*) from clickgood where Commentid = comment.id) as zanNum from `comment` join author on author.id=`comment`.AuthorID join dataresource on dataresource.id=author.DataID where ActiveID=" + active.id;
                     List<Comment> commentlist = MySqlDapper.Query<Comment>(sql2);
 
                     foreach (var comment in commentlist)
@@ -58,6 +58,12 @@ namespace WX.CNode.Repository
             return activelist;
         }
 
+        /// <summary>
+        /// 收藏
+        /// </summary>
+        /// <param name="author_id"></param>
+        /// <param name="active_id"></param>
+        /// <returns></returns>
         public bool Collect(int author_id, int active_id)
         {
             string sql = "SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = " + active_id;

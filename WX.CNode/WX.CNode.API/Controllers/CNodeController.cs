@@ -15,7 +15,8 @@ namespace WX.CNode.API.Controllers
     public class CNodeController : ApiController
     {
         public IActiveRepository ActiveService { get; set; }
-
+        public IAuthorRepository AuthorService { get; set; }
+        public ICollectRepository CollectService { get; set; }
         /// <summary>
         /// 加载动态的集合
         /// </summary>
@@ -52,6 +53,12 @@ namespace WX.CNode.API.Controllers
             return active;
         }
 
+        /// <summary>
+        /// 收藏
+        /// </summary>
+        /// <param name="author_id"></param>
+        /// <param name="active_id"></param>
+        /// <returns></returns>
         [HttpGet]
         public bool topic_collect(int author_id,int active_id)
         {
@@ -59,7 +66,7 @@ namespace WX.CNode.API.Controllers
             return result;
         }
 
-        public IAuthorRepository AuthorService { get; set; }
+        
 
         /// <summary>
         /// 登录验证
@@ -71,6 +78,26 @@ namespace WX.CNode.API.Controllers
         {
             Author author = AuthorService.GetAuthor(accesstoken);
             return author;
+        }
+
+        public ICommentRepository CommentServices { get; set; }
+
+        [HttpGet]
+        public bool zan(int authorid,int commentid)
+        {
+            bool result = CommentServices.zan(authorid,commentid);
+            return result;
+		}
+        /// <summary>
+        /// 根据用户id查询用户收藏信息
+        /// </summary>
+        /// <param name="Authorid">用户id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public List<Active> CollectAuthorid(int Authorid)
+        {
+            List<Active> actives = CollectService.CollectAuthorid(Authorid);
+            return actives;
         }
     }
 }
