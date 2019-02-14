@@ -20,6 +20,12 @@ namespace WX.CNode.IRepository
 
         int UpdateVisit_count(int id);
 
+        /// <summary>
+        /// 历史
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        List<Active> GetHistoryList(int roleid);
 
     }
 }

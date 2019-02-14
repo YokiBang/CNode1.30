@@ -93,5 +93,17 @@ namespace WX.CNode.Repository
             string sql = string.Format("update Active set visit_count=visit_count+1 where id='{0}'", id);
             return MySqlDapper.Execute(sql);
         }
+
+        /// <summary>
+        /// 历史
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public List<Active> GetHistoryList(int roleid)
+        {
+            string sql = string.Format("SELECT a.*,b.loginname from active a INNER JOIN author b ON a.PublisherID = '{0}'", roleid);
+            List<Active> activelist = MySqlDapper.Query<Active>(sql);
+            return activelist;
+        }
     }
 }

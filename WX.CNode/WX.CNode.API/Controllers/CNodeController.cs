@@ -99,5 +99,17 @@ namespace WX.CNode.API.Controllers
             List<Active> actives = CollectService.CollectAuthorid(Authorid);
             return actives;
         }
+
+        /// <summary>
+        /// 历史
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public List<Active> GetHistoryList(int roleid)
+        {
+            List<Active> activelist = ActiveService.GetHistoryList(roleid);
+            return activelist;
+        }
     }
 }
