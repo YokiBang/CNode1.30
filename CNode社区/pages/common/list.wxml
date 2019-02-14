@@ -3,8 +3,8 @@
 <scroll-view class="scroll-posts-list"  scroll-y="true" style="height:100%"  bindscrolltolower="lower">
   <view class="postslist">
     <block wx:for="{{postsList}}"  wx:key="">
-      <view class="posts-list">
-        <navigator url="/pages/detail/detail?id={{item.id}}">
+      <view catchtap='visit' class="posts-list">
+        <navigator  url="/pages/detail/detail?id={{item.id}}">
           <view class="posts-list-info" index="{{index}}">
               <image class="userimg" src="http://localhost:1026{{item.author.avatar_url}}" />
               <view class="item-box">
