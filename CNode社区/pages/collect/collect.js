@@ -10,29 +10,10 @@ Page({
     id: 0
   },
   onLoad: function () {
-    var accesstoken = wx.getStorageSync('CuserInfo').id;
-    if (!accesstoken) {
-      this.setData({ modalHidden: false });
-      return;
-    }
-    this.setData({ id: accesstoken });
-    this.getData();
-  },
-  onPullDownRefresh: function () {
-    this.getData();
-    console.log('下拉刷新', new Date());
-  },
-  onReachBottom: function () {
-    this.lower();
-    console.log('上拉刷新', new Date());
-  },
-  //获取文章列表数据
-  getData: function () {
     var that = this;
     var id = that.data.id;
     console.log(id);
     var page = that.data.page;
-    var ApiUrl = Api.collectid + '?page=' + page + '&id=' + id;
     var ApiUrl = Api.collectid + '?Authorid' + id
     that.setData({ hidden: false });
     if (page == 1) {
@@ -50,6 +31,14 @@ Page({
         that.setData({ hidden: true });
       }, 300);
     })
+  },
+  onPullDownRefresh: function () {
+    this.getData();
+    console.log('下拉刷新', new Date());
+  },
+  onReachBottom: function () {
+    this.lower();
+    console.log('上拉刷新', new Date());
   },
   // 滑动底部加载
   lower: function () {
