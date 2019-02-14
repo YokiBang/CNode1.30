@@ -94,9 +94,9 @@ namespace WX.CNode.API.Controllers
         /// <param name="Authorid">用户id</param>
         /// <returns></returns>
         [HttpGet]
-        public List<Active> CollectAuthorid(int Authorid)
+        public List<Active> GetCollectAuthorid(int Authorid)
         {
-            List<Active> actives = CollectService.CollectAuthorid(Authorid);
+            List<Active> actives = CollectService.GetCollectAuthorid(Authorid);
             return actives;
         }
 
