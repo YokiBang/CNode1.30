@@ -58,32 +58,23 @@ namespace WX.CNode.Repository
             return activelist;
         }
 
-        public bool Collect(int author_id,int active_id)
+        public bool Collect(int author_id, int active_id)
         {
-            try
+            string sql = "SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = " + active_id;
+            List<int> i = MySqlDapper.Query<int>(sql);
+            int count = i.FirstOrDefault();
+            if (count > 0)
             {
-                string sql = "SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = " + active_id;
-                List<List<int>> i = MySqlDapper.Query<List<int>>(sql);
-                int count = i.FirstOrDefault().FirstOrDefault();
-                if (count > 0)
-                {
-                    string delsql = "delete from collect where  Authorid = " + author_id + " and Activeid = " + active_id;
-                    MySqlDapper.Execute(delsql);
-                }
-                else
-                {
-                    string addsql = string.Format("insert into collect(Authorid,Activeid,is_collect) values({0},{1},1)", author_id, active_id);
-                    MySqlDapper.Execute(addsql);
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-
+                string delsql = "delete from collect where  Authorid = " + author_id + " and Activeid = " + active_id;
+                MySqlDapper.Execute(delsql);
                 return false;
             }
-            
-          // if (("SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = active.id"))
+            else
+            {
+                string addsql = string.Format("insert into collect(Authorid,Activeid,is_collect) values({0},{1},1)", author_id, active_id);
+                MySqlDapper.Execute(addsql);
+                return true;
+            }
         }
 
         /// <summary>

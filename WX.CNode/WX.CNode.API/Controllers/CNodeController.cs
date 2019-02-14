@@ -52,7 +52,7 @@ namespace WX.CNode.API.Controllers
             return active;
         }
 
-        [HttpPost]
+        [HttpGet]
         public bool topic_collect(int author_id,int active_id)
         {
            bool result =  ActiveService.Collect(author_id, active_id);

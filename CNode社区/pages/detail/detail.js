@@ -1,6 +1,8 @@
+
 // posts.js
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
+
 
 Page({
   data: {
@@ -11,9 +13,11 @@ Page({
     modalHidden: true
   },
 
+
   onLoad: function (options) {
     this.fetchData(options.id);
   },
+
 
   // 获取数据
   fetchData: function (id) {
@@ -37,11 +41,10 @@ Page({
     })
   },
 
+
    //收藏文章
   collect: function(e) {
     var that = this;
-    var ApiUrl = Api.collect;
-    console.log(ApiUrl);
     var accesstoken = wx.getStorageSync('CuserInfo');
     var id = e.currentTarget.id;
     if(!id) return;
@@ -49,8 +52,9 @@ Page({
      that.setData({ modalHidden: false });
       return;
     }
+    var ApiUrl = Api.collect + '?author_id=' + accesstoken.id + '&active_id=' + id;
     console.log('ok');
-    Api.fetchPost(ApiUrl, { author_id: accesstoken.id, active_id: id }, (err, res) => {
+    Api.fetchGet(ApiUrl, (err, res) => {
       if(res){
           var detail = that.data.detail;
           detail.is_collect = true;
@@ -59,9 +63,18 @@ Page({
             detail: detail
           });
       }
+      else {
+        var detail = that.data.detail;
+        detail.is_collect = false;
+        that.setData({
+          collectText: "收藏",
+          detail: detail
+        });
+      }
     })
   },
   
+
 
   // 点赞
   //reply: function(e) {
@@ -77,10 +90,12 @@ Page({
   //    return;
   //  }
 
+
   //  Api.fetchPost(ApiUrl, { accesstoken:accesstoken }, (err, res) => {
   //    if(res.success){
   //      var detail = that.data.detail;
   //      var replies = detail.replies[index];
+
 
   //      if(res.action === "up"){
   //        replies.zanNum = replies.zanNum + 1;
@@ -88,12 +103,16 @@ Page({
   //        replies.zanNum = replies.zanNum - 1;
   //      }
 
+
   //      that.setData({ detail: detail });
+
 
   //    }
   //  })
 
+
   //},
+
 
   // 关闭--模态弹窗
   cancelChange: function() {
@@ -106,5 +125,6 @@ Page({
       url: '/pages/login/login'
     });
   }
+
 
 })

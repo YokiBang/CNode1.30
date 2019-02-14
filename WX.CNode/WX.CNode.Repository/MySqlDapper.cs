@@ -40,7 +40,7 @@ namespace WX.CNode.Repository
         /// <param name="commandType">命令类型</param>
         /// <param name="param">参数</param>
         /// <returns>返回一个结果集合</returns>
-        public static List<T> Query<T>(string commandText, CommandType commandType = CommandType.Text, DynamicParameters param = null) where T: class,new()
+        public static List<T> Query<T>(string commandText, CommandType commandType = CommandType.Text, DynamicParameters param = null) 
         {
             using (IDbConnection conn = new MySqlConnection(connectionStrings))
             {
