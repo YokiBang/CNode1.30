@@ -6,7 +6,7 @@ var topics = HOST + '/topics';
 //get /topic/:id 主题详情
 var topic = HOST + '/topic';
 //get /collectid 用户id收藏
-var collectid = HOST + '/collectid';
+var collectid = HOST + '/CollectAuthorid';
 // get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
 // post /topic_collect/collect 收藏主题
