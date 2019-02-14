@@ -1,6 +1,8 @@
+
 // posts.js
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
+
 
 Page({
   data: {
@@ -11,9 +13,11 @@ Page({
     modalHidden: true
   },
 
+
   onLoad: function (options) {
     this.fetchData(options.id);
   },
+
 
   // 获取数据
   fetchData: function (id) {
@@ -36,6 +40,7 @@ Page({
       }, 300);
     })
   },
+
 
    //收藏文章
   collect: function(e) {
@@ -63,6 +68,7 @@ Page({
   },
   
 
+
   // 点赞
   //reply: function(e) {
   //  console.log(e);
@@ -77,10 +83,12 @@ Page({
   //    return;
   //  }
 
+
   //  Api.fetchPost(ApiUrl, { accesstoken:accesstoken }, (err, res) => {
   //    if(res.success){
   //      var detail = that.data.detail;
   //      var replies = detail.replies[index];
+
 
   //      if(res.action === "up"){
   //        replies.zanNum = replies.zanNum + 1;
@@ -88,12 +96,16 @@ Page({
   //        replies.zanNum = replies.zanNum - 1;
   //      }
 
+
   //      that.setData({ detail: detail });
+
 
   //    }
   //  })
 
+
   //},
+
 
   // 关闭--模态弹窗
   cancelChange: function() {
@@ -106,5 +118,6 @@ Page({
       url: '/pages/login/login'
     });
   }
+
 
 })
