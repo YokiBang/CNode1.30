@@ -33,6 +33,7 @@ Page({
     console.log(id);
     var page = that.data.page;
     var ApiUrl = Api.collectid + '?page=' + page + '&id=' + id;
+    var ApiUrl = Api.collectid + '?Authorid' + id
     that.setData({ hidden: false });
     if (page == 1) {
       that.setData({ postsList: [] });
