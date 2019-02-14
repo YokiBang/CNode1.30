@@ -24,11 +24,13 @@ namespace WX.CNode.API
             SetupResolveRules(buider);
             //注册所有的apicontrollers
             buider.RegisterApiControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
+            //创建一个真正的AutoFac的工作容器
             var container = buider.Build();
 
             //注册api容器所需要使用的HttpConfiguration对象
             HttpConfiguration config = GlobalConfiguration.Configuration;
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            //将当前容器中的控制器工厂替换掉api默认的控制器工厂
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
         /// <summary>
@@ -39,6 +41,7 @@ namespace WX.CNode.API
         {
             container.RegisterType<ActiveRepository>().As<IActiveRepository>();
             container.RegisterType<AuthorRepository>().As<IAuthorRepository>();
+            container.RegisterType<CollectRepository>().As<ICollectRepository>();
         }
     }
 }

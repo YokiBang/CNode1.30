@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace WX.CNode.IRepository
 {
+    using WX.CNode.Model;
     public interface ICollectRepository
     {
-        List<Action> CollectAuthorid(int Authorid);
+        /// <summary>
+        /// 根据用户id查询用户收藏信息
+        /// </summary>
+        /// <param name="Authorid">用户id</param>
+        /// <returns></returns>
+        List<Active> CollectAuthorid(int Authorid);
     }
 }
