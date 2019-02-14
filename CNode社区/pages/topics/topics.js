@@ -73,16 +73,13 @@ Page({
     var page = that.data.page;
     var limit = that.data.limit;
     var ApiUrl = Api.topics + '?tab=' + tab + '&page=' + page + '&limit=' + limit + '&id=' + id;
-
-    
-
     that.setData({ hidden: false });
-
     if(page == 1) {
       that.setData({ postsList: [] });
     }
 
     Api.fetchGet(ApiUrl, (err, res) => {
+      console.log(res);
       //更新数据
       that.setData({
         postsList: that.data.postsList.concat(res.map(function (item) {
