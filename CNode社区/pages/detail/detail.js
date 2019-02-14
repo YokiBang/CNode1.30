@@ -40,8 +40,6 @@ Page({
    //收藏文章
   collect: function(e) {
     var that = this;
-    var ApiUrl = Api.collect;
-    console.log(ApiUrl);
     var accesstoken = wx.getStorageSync('CuserInfo');
     var id = e.currentTarget.id;
     if(!id) return;
@@ -49,8 +47,9 @@ Page({
      that.setData({ modalHidden: false });
       return;
     }
+    var ApiUrl = Api.collect + '?author_id=' + accesstoken.id + '&active_id=' + id;
     console.log('ok');
-    Api.fetchPost(ApiUrl, { author_id: accesstoken.id, active_id: id }, (err, res) => {
+    Api.fetchGet(ApiUrl, (err, res) => {
       if(res){
           var detail = that.data.detail;
           detail.is_collect = true;
@@ -58,6 +57,14 @@ Page({
           collectText: "取消收藏",
             detail: detail
           });
+      }
+      else {
+        var detail = that.data.detail;
+        detail.is_collect = false;
+        that.setData({
+          collectText: "收藏",
+          detail: detail
+        });
       }
     })
   },
