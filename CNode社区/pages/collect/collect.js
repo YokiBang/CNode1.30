@@ -1,4 +1,3 @@
-// pages/history/history.js
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 Page({
@@ -10,16 +9,30 @@ Page({
     id: 0
   },
   onLoad: function () {
+    var accesstoken = wx.getStorageSync('CuserInfo').id
+    if (!accesstoken) {
+      this.setData({ modalHidden: false });
+      return;
+    }
+    this.setData({ id: accesstoken });
+    this.getData(); 
+  },
+
+  //获取文章列表数据
+  getData: function () {
     var that = this;
     var id = that.data.id;
     console.log(id);
+    var tab = that.data.tab;
     var page = that.data.page;
-    var ApiUrl = Api.collectid + '?Authorid' + id
+    var limit = that.data.limit;
+    var ApiUrl = Api.topics + '?tab=' + tab + '&page=' + page + '&limit=' + limit + '&id=' + id;
     that.setData({ hidden: false });
     if (page == 1) {
       that.setData({ postsList: [] });
     }
     Api.fetchGet(ApiUrl, (err, res) => {
+      console.log(res);
       //更新数据
       that.setData({
         postsList: that.data.postsList.concat(res.map(function (item) {
