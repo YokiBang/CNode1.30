@@ -7,7 +7,6 @@
     <radio-group>
       <radio value="分享" checked='true'>分享</radio>
       <radio value="问答">问答</radio>
-      <radio value="招聘">招聘</radio>
     </radio-group>
   </view>
   <view class="container">

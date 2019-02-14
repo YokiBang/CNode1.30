@@ -14,6 +14,6 @@ namespace WX.CNode.IRepository
         /// </summary>
         /// <param name="Authorid">用户id</param>
         /// <returns></returns>
-        List<Active> CollectAuthorid(int Authorid);
+        List<Active> GetCollectAuthorid(int Authorid);
     }
 }
