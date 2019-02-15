@@ -111,5 +111,19 @@ namespace WX.CNode.API.Controllers
             List<Active> activelist = ActiveService.GetHistoryList(roleid);
             return activelist;
         }
+        /// <summary>
+        /// 发布添加
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="type">类型</param>
+        /// <param name="PublisheriD">用户id</param>
+        /// <returns></returns>
+        [HttpPost]
+        public bool PostActive(string title, string content, int type, int PublisheriD)
+        {
+            bool result = ActiveService.PostActive(title, content, type, PublisheriD);
+            return result;
+        }
     }
 }
