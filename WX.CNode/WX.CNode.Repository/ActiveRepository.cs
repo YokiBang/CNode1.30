@@ -105,5 +105,10 @@ namespace WX.CNode.Repository
             List<Active> activelist = MySqlDapper.Query<Active>(sql);
             return activelist;
         }
+
+        public bool PostActive(string title, string content)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
