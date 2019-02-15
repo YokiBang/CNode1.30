@@ -27,7 +27,7 @@ namespace WX.CNode.IRepository
         /// <returns></returns>
         List<Active> GetHistoryList(int roleid);
 
-        bool PostActive(string title, string content);
+        bool PostActive(string title, string content,int type,int PublisheriD);
 
     }
 }

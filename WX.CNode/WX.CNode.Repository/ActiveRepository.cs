@@ -105,10 +105,26 @@ namespace WX.CNode.Repository
             List<Active> activelist = MySqlDapper.Query<Active>(sql);
             return activelist;
         }
-
-        public bool PostActive(string title, string content)
+        /// <summary>
+        /// 发布添加
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="type">类型</param>
+        /// <param name="PublisheriD">用户id</param>
+        /// <returns></returns>
+        public bool PostActive(string title, string content, int type, int PublisheriD)
         {
-            throw new NotImplementedException();
+            string sql = "insert into active values(id,'" + title + "','" + content + "'," + type + ",0,0,NOW()," + PublisheriD + ",0,0)";
+            int count = MySqlDapper.Execute(sql);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
