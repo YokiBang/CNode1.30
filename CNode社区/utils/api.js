@@ -9,6 +9,8 @@ var topic = HOST + '/topic';
 var collectid = HOST + '/GetCollectAuthorid';
 // get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
+// post /添加数据
+var s_PostActive = HOST + '/PostActive';
 // post /topic_collect/collect 收藏主题
 var collect = HOST + '/topic_collect';
 // post /topic_collect/de_collect 取消主题
@@ -54,6 +56,7 @@ module.exports = {
   topic: topic,
   accesstoken: accesstoken,
   collectid: collectid,
+  s_PostActive: s_PostActive,
   de_collect: de_collect,
   zan: zan,
   // METHOD
