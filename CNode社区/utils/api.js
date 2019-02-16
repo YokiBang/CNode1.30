@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 // api 路径
 var HOST = 'http://localhost:1026/api/CNode';
 // get /topics 主题首页
@@ -51,15 +51,14 @@ function fetchPost(url, data, callback) {
 }
 
 module.exports = {
-  // API
   topics: topics,
   topic: topic,
   accesstoken: accesstoken,
   collectid: collectid,
   s_PostActive: s_PostActive,
+  collect: collect,
   de_collect: de_collect,
   zan: zan,
-  // METHOD
   fetchGet: fetchGet,
   fetchPost: fetchPost
 }

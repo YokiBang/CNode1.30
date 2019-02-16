@@ -15,5 +15,12 @@ namespace WX.CNode.IRepository
         /// <param name="Authorid">用户id</param>
         /// <returns></returns>
         List<Active> GetCollectAuthorid(int Authorid);
+
+        /// <summary>
+        /// 查看历史
+        /// </summary>
+        /// <param name="Authorid"></param>
+        /// <returns></returns>
+        List<Active> GetHistoryList(int roleid);
     }
 }
