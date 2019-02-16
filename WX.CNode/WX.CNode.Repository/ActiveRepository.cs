@@ -67,8 +67,9 @@ namespace WX.CNode.Repository
         public bool Collect(int author_id, int active_id)
         {
             string sql = "SELECT count(*) from collect where Authorid = " + author_id + " and Activeid = " + active_id;
-            List<int> i = MySqlDapper.Query<int>(sql);
-            int count = i.FirstOrDefault();
+            //List<int> i = MySqlDapper.Query<int>(sql);
+            //int count = i.FirstOrDefault();
+            int count = Convert.ToInt32(MySqlDapper.Scalar(sql));
             if (count > 0)
             {
                 string delsql = "delete from collect where  Authorid = " + author_id + " and Activeid = " + active_id;

@@ -54,6 +54,7 @@ module.exports = {
   topic: topic,
   accesstoken: accesstoken,
   collectid: collectid,
+  collect: collect,
   de_collect: de_collect,
   zan: zan,
   // METHOD
