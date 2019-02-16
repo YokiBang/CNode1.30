@@ -14,8 +14,9 @@ namespace WX.CNode.Repository
         public bool zan(int authorid, int commentid)
         {
             string sql = "select count(*) from clickgood where Authorid = " + authorid + " and Commentid = " + commentid;
-            List<int> i = MySqlDapper.Query<int>(sql);
-            int count = i.FirstOrDefault();
+            //List<int> i = MySqlDapper.Query<int>(sql);
+            //int count = i.FirstOrDefault();
+            int count = Convert.ToInt32(MySqlDapper.Scalar(sql));
             if (count > 0)
             {
                 string delsql = "delete from clickgood where Authorid = " + authorid + " and Commentid = " + commentid;
