@@ -1,64 +1,50 @@
+var Api = require('../../utils/api.js');
+var util = require('../../utils/util.js');
 
 Page({
   data: {
-
+     title:"",
+     content:"",
+     type:0,
+     success:false,
+     error: ""
   },
-  tap() {
-
+  //获取文本框的值
+  bindKeyInput1: function (e) {
+    this.setData({
+      title: e.detail.value
+    })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
+  //获取文本框的值
+  bindKeyInput2: function (e) {
+    this.setData({
+      content: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  radioChange: function (e) {
+    this.setData({
+      type: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  Addshare:function(){
+    var that = this;
+    var title=that.data.title;
+    var content = that.data.content;
+    var type = that.data.type;
+    var accesstoken = wx.getStorageSync('CuserInfo').id;
+    if (accesstoken === "") return;
+    if (title === "") return;
+    if (content === "") return;
+    if (type === "") return;
+    var ApiUrl = Api.s_PostActive + "?title=" + title + "&content=" + content + "&type=" + type + "&PublisheriD=" + accesstoken;
+    Api.fetchPost(ApiUrl, { title: title, content: content, type: type, accesstoken: accesstoken }, (err, res) => {
+      setTimeout(function () {
+        that.setData({ loading: false });
+        wx.navigateTo({
+          url: '/pages/index/index'
+        })
+        wx.navigateBack();
+      }, 3000);
+    })
   }
 })
