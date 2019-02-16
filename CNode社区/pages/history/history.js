@@ -53,7 +53,7 @@ Page({
     var tab = that.data.tab;
     var page = that.data.page;
     var limit = that.data.limit;
-    var ApiUrl = Api.topics + '?tab=' + tab + '&page=' + page + '&limit=' + limit + '&id=' + id;
+    var ApiUrl = Api.history + '?roleid=' + id;
     that.setData({ hidden: false });
     if (page == 1) {
       that.setData({ postsList: [] });
