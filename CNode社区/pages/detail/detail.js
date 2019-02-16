@@ -57,8 +57,6 @@ Page({
     Api.fetchGet(ApiUrl, (err, res) => {
       if(res){
           var detail = that.data.detail;
-
-
           detail.is_collect = true;
           that.setData({
           collectText: "取消收藏",
