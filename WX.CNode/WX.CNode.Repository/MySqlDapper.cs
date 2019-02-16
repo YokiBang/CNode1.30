@@ -33,6 +33,7 @@ namespace WX.CNode.Repository
                 return conn.Execute(commandText,param,null,null,commandType);
             }
         }
+
         /// <summary>
         /// 得到一个结果集合
         /// </summary>
@@ -45,6 +46,19 @@ namespace WX.CNode.Repository
             using (IDbConnection conn = new MySqlConnection(connectionStrings))
             {
                 return conn.Query<T>(commandText,param,null,true,null,commandType).ToList();
+            }
+        }
+
+        /// <summary>
+        /// 得到一个单行单列的结果
+        /// </summary>
+        /// <param name="commandText">命令文本</param>
+        /// <returns>返回一个单行单列的结果</returns>
+        public static object Scalar(string commandText)
+        {
+            using (IDbConnection conn = new MySqlConnection(connectionStrings))
+            {
+                return conn.ExecuteScalar(commandText);
             }
         }
     }

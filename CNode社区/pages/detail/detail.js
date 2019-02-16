@@ -2,8 +2,6 @@
 // posts.js
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
-
-
 Page({
   data: {
     title: '话题详情',
