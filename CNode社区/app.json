@@ -8,7 +8,8 @@
     "pages/share/share",
     "pages/collect/collect",
     "pages/history/history",
-    "pages/news/news"
+    "pages/news/news",
+    "pages/Job/Job"
   ],
   "window": {
     "backgroundTextStyle": "light",

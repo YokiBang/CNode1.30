@@ -11,6 +11,12 @@ namespace WX.CNode.Repository
 {
    public class CommentRepository : ICommentRepository
     {
+        /// <summary>
+        /// 点赞
+        /// </summary>
+        /// <param name="authorid"></param>
+        /// <param name="commentid"></param>
+        /// <returns></returns>
         public bool zan(int authorid, int commentid)
         {
             string sql = "select count(*) from clickgood where Authorid = " + authorid + " and Commentid = " + commentid;

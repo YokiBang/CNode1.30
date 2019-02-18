@@ -23,11 +23,14 @@
       <view class="detail-post-time">楼主 发表于{{ detail.create_at }}</view>
     </view>
 
+
     <view style='width:60px;' class="detail-collect-item" id="{{detail.id}}" catchtap="collect" wx:if="{{detail.is_collect == true}}">取消收藏</view>
     <view class="detail-collect-item" id="{{detail.id}}" catchtap="collect" wx:if="{{detail.is_collect == false}}">收藏</view>
   </view>
 
+
   <view class="detail-post-header">
+
 
     <view class="detail-post-title">
       <view class="detail-posts-tag hot" wx:if="{{detail.top === true}}">置顶</view>
@@ -36,9 +39,11 @@
     </view>
   </view>
 
+
   <view class="detail-post-content">
     <text class="content-info">{{ detail.content }}</text>
   </view>
+
 
   <view class="detail-post-comment">
     <view class="detail-post-comment-title">评论</view>
@@ -56,6 +61,7 @@
               </view>
               <view class="detail-post-comment-info-cell" style="text-align:right" id="{{item.id}}" data-index="{{index}}" catchtap="reply">
 
+
                 <view wx:if="{{item.is_zan == false}}">
                  <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zan.png"></image>
                  <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
@@ -64,6 +70,8 @@
                  <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zanhl.png"></image>
                  <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
                 </view>
+
+
 
 
                 
@@ -76,12 +84,14 @@
         </view>
       </block>
 
+
       <block wx:if="{{detail.replies.length < 0}}">
         <view class="detail-post-comment-null">
           <image class="imgnull" mode="scaleToFill" src="/images/icon/null.png"></image>
           <text class="textnull">暂无收录评论 </text>
         </view>
       </block>
+
 
     </view>
   </view>
@@ -95,9 +105,11 @@
     加载中...
   </loading>
 
+
   <modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
     您还没未登录conde，是否前往认证登录？
   </modal>
+
 
   
 </page>

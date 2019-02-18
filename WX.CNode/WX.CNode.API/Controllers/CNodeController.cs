@@ -17,6 +17,7 @@ namespace WX.CNode.API.Controllers
         public IActiveRepository ActiveService { get; set; }
         public IAuthorRepository AuthorService { get; set; }
         public ICollectRepository CollectService { get; set; }
+        public IJobRepository JobService { get; set; }
         /// <summary>
         /// 加载动态的集合
         /// </summary>
@@ -52,7 +53,20 @@ namespace WX.CNode.API.Controllers
             ActiveService.UpdateVisit_count(id);
             return active;
         }
-
+        /// <summary>
+        /// 获取招聘详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Job job(int id)
+        {
+            Job job = JobService.GetJobList(id);
+            job.author = new Author();
+            job.author.loginname = job.loginname;
+            job.author.avatar_url = job.avatar_url;
+            return job;
+        }
         /// <summary>
         /// 收藏
         /// </summary>

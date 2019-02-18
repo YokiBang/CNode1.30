@@ -83,6 +83,7 @@
     <Compile Include="Active.cs" />
     <Compile Include="Author.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

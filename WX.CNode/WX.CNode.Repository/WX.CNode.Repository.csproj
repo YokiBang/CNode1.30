@@ -91,6 +91,7 @@
     <Compile Include="AuthorRepository.cs" />
     <Compile Include="CommentRepository.cs" />
     <Compile Include="CollectRepository.cs" />
+    <Compile Include="JobRepository.cs" />
     <Compile Include="MySqlDapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

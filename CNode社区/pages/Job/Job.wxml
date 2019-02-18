@@ -1,0 +1,42 @@
+<!--pages/Job/Job.wxml-->
+
+<page class="page Job">
+      <view class="detail-post-meta">
+    <view class="detail-post-avatar">
+    <image class="detail-post-avatar-img" mode="scaleToFill" src="http://localhost:1026{{ job.author.avatar_url }}" />
+    </view>
+    <view class="detail-post-info">
+      <view class="detail-post-author-name">
+        <text>{{job.author.loginname}}</text>
+      </view>
+      <view class="detail-post-time">楼主 发表于{{job.fabutime}}</view>
+    </view>
+        <view style='width:60px;' class="detail-collect-item" id="{{job.Activeid}}" catchtap="collect" wx:if="{{is_collect == true}}">取消收藏</view>
+    <view class="detail-collect-item" id="{{job.id}}" catchtap="collect" wx:if="{{is_collect == false}}">收藏</view>
+  </view>
+    <view class="detail-post-meta">
+    <view class="detail-post-avatar">
+    <text>{{job.Jobtitle}}</text> 
+    </view>
+    </view>
+  <view>公司名称：{{job.Jobname}}</view>
+  <view>公司信息：{{job.JobMes}}</view>
+  <view>公司地址：{{job.Jobaddress}}</view>
+  <view>招聘要求：{{job.Jobask}}</view>
+  <view>公司邮件：{{job.Jobemail}}</view>
+
+    <view wx:if="{{hidden}}">
+  <loading hidden="{{hidden}}">
+    加载中...
+  </loading>
+  </view>
+  
+  <loading hidden="{{hidden}}">
+    加载中...
+  </loading>
+
+
+  <modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
+    您还没未登录conde，是否前往认证登录？
+  </modal>
+</page>

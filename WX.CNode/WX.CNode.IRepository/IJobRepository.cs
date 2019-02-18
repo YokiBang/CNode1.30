@@ -8,9 +8,8 @@ using WX.CNode.Model;
 
 namespace WX.CNode.IRepository
 {
-    public interface ICommentRepository
+    public interface IJobRepository
     {
-
-        bool zan(int authorid ,int commentid);
+        Job GetJobList(int id);
     }
 }
