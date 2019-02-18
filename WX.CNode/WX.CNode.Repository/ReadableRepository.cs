@@ -22,6 +22,18 @@ namespace WX.CNode.Repository
             return readable;
         }
         /// <summary>
+        /// 获取多条评论信息(数量)
+        /// </summary>
+        /// <param name="AuthorId"></param>
+        /// <returns></returns>
+        public int GetReadableCount(int AuthorId)
+        {
+            string sql = "select count(*) from (select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = `comment`.AuthorID join dataresource on dataresource.id = author.DataID where active.PublisherID = " + AuthorId + " ORDER BY readable.whether,`comment`.reply_at ASC ) a";
+            int counts = MySqlDapper.Query<int>(sql).FirstOrDefault();
+            return counts;
+        }
+
+        /// <summary>
         /// 获取多条评论信息
         /// </summary>
         /// <param name="AuthorId"></param>

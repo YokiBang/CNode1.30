@@ -11,6 +11,8 @@ var collectid = HOST + '/GetCollectAuthorid';
 var accesstoken = HOST + '/accesstoken';
 //消息提示
 var readableList = HOST + '/GetReadableList';
+//消息提示(条数)
+var readablecount = HOST + '/GetReadableCount';
 //消息详情
 var readable = HOST + '/GetReadable';
 // post /添加数据
@@ -65,6 +67,7 @@ module.exports = {
   collect: collect,
   readableList: readableList,
   readable: readable,
+  readablecount: readablecount,
   de_collect: de_collect,
   zan: zan,
   history: history,	

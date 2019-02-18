@@ -21,5 +21,11 @@ namespace WX.CNode.IRepository
         /// <param name="CommonId"></param>
         /// <returns></returns>
         Readable GetReadable(int CommonId);
+        /// <summary>
+        /// 根据用户id查询收到的评论信息(未读数量)
+        /// </summary>
+        /// <param name="AuthorId"></param>
+        /// <returns></returns>
+        int GetReadableCount(int AuthorId);
     }
 }

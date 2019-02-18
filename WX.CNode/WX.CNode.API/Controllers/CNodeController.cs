@@ -148,5 +148,16 @@ namespace WX.CNode.API.Controllers
             Readable readable = ReadableService.GetReadable(CommonId);
             return readable;
         }
+        /// <summary>
+        /// 获取多条评论信息(数量)
+        /// </summary>
+        /// <param name="AuthorId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public int GetReadableCount(int AuthorId)
+        {
+            int counts = ReadableService.GetReadableCount(AuthorId);
+            return counts;
+        }
     }
 }
