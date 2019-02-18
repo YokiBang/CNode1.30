@@ -81,5 +81,40 @@
 .page { margin-left: 10rpx; margin-right: 10rpx; }  
 .swiper-tab { display: flex; flex-direction: row; line-height: 80rpx; border-bottom: 2rpx solid #777; }  
 .tab-item { width: 33.3%; text-align: center; font-size: 15px; color: #777; }  
-.swiper { height: 1100px; background: #dfdfdf; }  
-.on { color: blue; border-bottom: 5rpx solid blue; }
+.swiper { height: 400px; background: #fff; }  
+.on { display:inline-block;
+  width: 170rpx;
+  color: #80bd01;
+  text-align: center;
+  /* line-height: 72rpx; */
+  font-size: 35rpx; }
+
+.top-bar-item {
+  display:inline-block;
+  width: 150rpx;
+  color: #80bd01;
+  text-align: center;
+  /* line-height: 72rpx; */
+  font-size: 28rpx;
+}
+.top-bar-active{
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.posts-list .bar-info .bar-info-item{
+  display: inline-block;
+  margin-right: 50rpx;
+  line-height: 66rpx;
+}
+.posts-list .bar-info .bar-info-item-icon{
+  display: inline-block;
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.posts-list .bar-info .bar-info-item-number{
+  display: inline-block;
+  vertical-align: middle;
+}

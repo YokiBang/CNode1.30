@@ -26,6 +26,25 @@ Page({
       currentTab: e.detail.current,
     })
   },
+  
+  // 点击获取对应分类的数据
+  onTapTag: function (e) {
+    var that = this;
+    var tab = e.currentTarget.id;
+    var index = e.currentTarget.dataset.index;
+    that.setData({
+      activeIndex: index,
+      tab: tab,
+      page: 1
+    });
+    if (tab !== 'all') {
+      that.getData({ tab: tab });
+    } else {
+      that.getData();
+    }
+  },
+
+
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
