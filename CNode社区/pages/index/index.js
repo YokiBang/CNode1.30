@@ -3,7 +3,7 @@
 //获取应用实例
 var app = getApp()
 var Headerlist = [
-  { id: "share", title: "分享" },
+  { id: "share", title: "赞过的" },
   { id: "collect", title: "收藏" },
   { id: "history", title: "历史" },
   { id: "news", title: "消息" },
