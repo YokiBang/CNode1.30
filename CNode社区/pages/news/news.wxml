@@ -1,1 +1,30 @@
 <!--pages/news/news.wxml-->
+<scroll-view class="scroll-posts-list"  scroll-y="true" style="height:100%"  bindscrolltolower="lower">
+  <view class="postslist">
+    <block wx:for="{{postsList}}"  wx:key="">
+      <view catchtap='visit' class="posts-list">
+        <navigator  url="/pages/detail/detail?id={{item.id}}">
+          <view class="posts-list-info" index="{{index}}">
+              <image class="userimg" src="http://localhost:1026{{item.avatar_url}}" />
+              <view class="item-box">
+                <view class="userinfo">
+                  <text class="username">{{item.loginname}}</text>
+                  <text  wx:if="{{item.whether === 0 }}" class="read">*</text>
+                </view>
+                <view class="posts-title">
+                  <text>{{item.content}}</text>
+                </view>
+                <view class="posts-contain">
+                  <text>{{item.title}}</text>
+                </view>
+              </view>
+          </view>
+      </navigator>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<loading class="loading" hidden="{{hidden}}">
+  <text class="loading-font">加载中...</text>
+</loading>

@@ -9,6 +9,12 @@ var topic = HOST + '/topic';
 var collectid = HOST + '/GetCollectAuthorid';
 // get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
+//消息提示
+var readableList = HOST + '/GetReadableList';
+//消息提示(条数)
+var readablecount = HOST + '/GetReadableCount';
+//消息详情
+var readable = HOST + '/GetReadable';
 // post /添加数据
 var s_PostActive = HOST + '/PostActive';
 // post /topic_collect/collect 收藏主题
@@ -19,6 +25,8 @@ var de_collect = HOST + '/topic_collect';
 var zan = HOST + "/zan";
 // 招聘详情
 var job = HOST + '/job';
+//历史
+var history = HOST + "/GetHistoryList";
 
 // get请求方法
 function fetchGet(url, callback) {
@@ -59,8 +67,12 @@ module.exports = {
   collectid: collectid,
   s_PostActive: s_PostActive,
   collect: collect,
+  readableList: readableList,
+  readable: readable,
+  readablecount: readablecount,
   de_collect: de_collect,
   zan: zan,
+  history: history,	
   fetchGet: fetchGet,
   fetchPost: fetchPost,
   job : job

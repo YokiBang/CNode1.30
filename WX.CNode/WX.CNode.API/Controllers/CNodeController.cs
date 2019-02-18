@@ -18,6 +18,7 @@ namespace WX.CNode.API.Controllers
         public IAuthorRepository AuthorService { get; set; }
         public ICollectRepository CollectService { get; set; }
         public IJobRepository JobService { get; set; }
+        public IReadableRepository ReadableService { get; set; }
         /// <summary>
         /// 加载动态的集合
         /// </summary>
@@ -122,7 +123,7 @@ namespace WX.CNode.API.Controllers
         [HttpGet]
         public List<Active> GetHistoryList(int roleid)
         {
-            List<Active> activelist = ActiveService.GetHistoryList(roleid);
+            List<Active> activelist = CollectService.GetHistoryList(roleid);
             return activelist;
         }
         /// <summary>
@@ -138,6 +139,39 @@ namespace WX.CNode.API.Controllers
         {
             bool result = ActiveService.PostActive(title, content, type, PublisheriD);
             return result;
+        }
+        /// <summary>
+        /// 获取已读未读信息列表
+        /// </summary>
+        /// <param name="AuthorId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public List<Readable> GetReadableList(int AuthorId)
+        {
+            List<Readable> readables = ReadableService.GetReadableList(AuthorId);
+            return readables;
+        }
+        /// <summary>
+        /// 根据评论id获取信息
+        /// </summary>
+        /// <param name="CommonId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Readable GetReadable(int CommonId)
+        {
+            Readable readable = ReadableService.GetReadable(CommonId);
+            return readable;
+        }
+        /// <summary>
+        /// 获取多条评论信息(数量)
+        /// </summary>
+        /// <param name="AuthorId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public int GetReadableCount(int AuthorId)
+        {
+            int counts = ReadableService.GetReadableCount(AuthorId);
+            return counts;
         }
     }
 }

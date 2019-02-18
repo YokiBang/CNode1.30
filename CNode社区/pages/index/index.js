@@ -1,18 +1,13 @@
-
+var Api = require('../../utils/api.js');
+var util = require('../../utils/util.js');
 //index.js
 //获取应用实例
 var app = getApp()
-var Headerlist = [
-  { id: "share", title: "分享" },
-  { id: "collect", title: "收藏" },
-  { id: "history", title: "历史" },
-  { id: "news", title: "消息" },
-];
 Page({
   data: {
-    Headerlist: Headerlist,
+    Headerlist: [],
     islogin: false,
-    userInfo: {}
+    userInfo: {},
   },
   //事件处理函数
   bindViewTap: function() {
@@ -21,7 +16,6 @@ Page({
     })
   },
   onLoad: function () {
-    console.log('onLoad')
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
     if (CuserInfo.accesstoken){
@@ -36,6 +30,19 @@ Page({
       //更新数据
       that.setData({
         userInfo:userInfo
+      })
+    })
+    var authorid = wx.getStorageSync('CuserInfo').id;
+    var ApiUrl = Api.readablecount + '?AuthorId=' + authorid;
+    Api.fetchGet(ApiUrl, (err, res) => {
+      console.log(res);
+      that.setData({
+        Headerlist: [
+          { id: "share", title: "赞过的" },
+          { id: "collect", title: "收藏" },
+          { id: "history", title: "历史" },
+          { id: "news", title: "消息(" + res+")" },
+        ]
       })
     })
   },

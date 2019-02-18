@@ -85,6 +85,7 @@
     <Compile Include="ICommentRepository.cs" />
     <Compile Include="ICollectRepository.cs" />
     <Compile Include="IJobRepository.cs" />
+    <Compile Include="IReadableRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
