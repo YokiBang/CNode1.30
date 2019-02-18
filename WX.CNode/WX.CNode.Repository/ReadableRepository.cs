@@ -17,7 +17,7 @@ namespace WX.CNode.Repository
         /// <returns></returns>
         public Readable GetReadable(int CommonId)
         {
-            string sql = "select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = active.PublisherID join dataresource on dataresource.id = author.DataID where `comment`.id = " + CommonId + " ORDER BY readable.whether,`comment`.reply_at ASC";
+            string sql = "select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = `comment`.AuthorID join dataresource on dataresource.id = author.DataID where `comment`.id = " + CommonId + " ORDER BY readable.whether,`comment`.reply_at ASC";
             Readable readable = MySqlDapper.Query<Readable>(sql).FirstOrDefault();
             return readable;
         }
@@ -28,7 +28,7 @@ namespace WX.CNode.Repository
         /// <returns></returns>
         public List<Readable> GetReadableList(int AuthorId)
         {
-            string sql = "select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = " + AuthorId + " join dataresource on dataresource.id = author.DataID where active.PublisherID = " + AuthorId + " ORDER BY readable.whether,`comment`.reply_at ASC";
+            string sql = "select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = `comment`.AuthorID join dataresource on dataresource.id = author.DataID where active.PublisherID = " + AuthorId + " ORDER BY readable.whether,`comment`.reply_at ASC";
             List<Readable> readables = MySqlDapper.Query<Readable>(sql);
             return readables;
         }

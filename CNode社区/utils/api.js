@@ -9,6 +9,10 @@ var topic = HOST + '/topic';
 var collectid = HOST + '/GetCollectAuthorid';
 // get /accesstoken 验证 accessToken 的正确性
 var accesstoken = HOST + '/accesstoken';
+//消息提示
+var readableList = HOST + '/GetReadableList';
+//消息详情
+var readable = HOST + '/GetReadable';
 // post /添加数据
 var s_PostActive = HOST + '/PostActive';
 // post /topic_collect/collect 收藏主题
@@ -59,6 +63,8 @@ module.exports = {
   collectid: collectid,
   s_PostActive: s_PostActive,
   collect: collect,
+  readableList: readableList,
+  readable: readable,
   de_collect: de_collect,
   zan: zan,
   history: history,	
