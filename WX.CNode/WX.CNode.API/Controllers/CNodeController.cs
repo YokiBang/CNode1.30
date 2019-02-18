@@ -108,7 +108,7 @@ namespace WX.CNode.API.Controllers
         [HttpGet]
         public List<Active> GetHistoryList(int roleid)
         {
-            List<Active> activelist = ActiveService.GetHistoryList(roleid);
+            List<Active> activelist = CollectService.GetHistoryList(roleid);
             return activelist;
         }
         /// <summary>
