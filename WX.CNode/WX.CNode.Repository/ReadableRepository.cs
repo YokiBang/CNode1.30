@@ -28,7 +28,7 @@ namespace WX.CNode.Repository
         /// <returns></returns>
         public int GetReadableCount(int AuthorId)
         {
-            string sql = "select count(*) from (select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = `comment`.AuthorID join dataresource on dataresource.id = author.DataID where active.PublisherID = " + AuthorId + " ORDER BY readable.whether,`comment`.reply_at ASC ) a";
+            string sql = "select count(*) from (select `comment`.id,`comment`.content,`comment`.reply_at,readable.whether,author.loginname,dataresource.avatar_url,active.title from `comment` join readable on `comment`.id = readable.commentid join active ON `comment`.ActiveID = active.id join author ON author.id = `comment`.AuthorID join dataresource on dataresource.id = author.DataID where readable.whether=0 and active.PublisherID = " + AuthorId + " ORDER BY readable.whether,`comment`.reply_at ASC ) a";
             int counts = MySqlDapper.Query<int>(sql).FirstOrDefault();
             return counts;
         }

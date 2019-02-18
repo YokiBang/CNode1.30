@@ -64,7 +64,16 @@
   color: #555;
 }
 .posts-list-info .item-box .posts-title{
-  height: 80rpx;
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  color: #35495e;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.posts-list-info .item-box .posts-contain{
   margin: 20rpx 0;
   font-size: 30rpx;
   color: #35495e;
