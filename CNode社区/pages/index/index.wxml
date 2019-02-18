@@ -1,11 +1,12 @@
 <!--index.wxml-->
 <template name="Header">
     <view class="top-bar">
-      <block wx:for="{{Headerlist}}" wx:key="">
-        <view id="{{item.id}}" data-index="{{index}}"
-              class="top-bar-item {{index == activeIndex ? 'top-bar-active' : ''}}"
-              catchtap="onTapTag">{{item.title}}</view>
-      </block>
+      <view class="swiper-tab">
+<view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">Tab1</view>
+<view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">Tab2</view>
+<view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">Tab3</view>
+<view class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">Tab4</view>
+</view>
     </view>
 </template>
 
@@ -31,22 +32,19 @@
       </view>
     </view>
     
-    <view class="about">
-        <view class="about-item">
-          <text class="about-item-title">关于CNODE社区</text>
-          <text class="about-item-content">CNode社区为国内最大最具影响力的 .net 开源技术社区，致力于 .net 的技术研究</text>
-        </view>
-        <view class="about-item">
-          <text class="about-item-title">客户端</text>
-          <text class="about-item-content link">由@soliury 开发维护，有问题请联系：https://github.com/ljq123456789</text>
-        </view>
-        <view class="about-item">
-          <text class="about-item-title">CNode 客户端</text>
-          <text class="about-item-content link">https://github.com/TakWolf/CNode-Material-Design ，这是 Java 原生开发的安卓客户端。</text>
-        </view>
-        <view class="about-item">
-          <text class="about-item-title">当前版本</text>
-          <text class="about-item-content ">V1.0.0 Beta</text>
-        </view>
-    </view>
+    <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+<swiper-item>
+<view>我是tab1</view>
+</swiper-item>
+
+<swiper-item>
+<view>我是tab2</view>
+</swiper-item>
+<swiper-item>
+<view>我是tab3</view>
+</swiper-item>
+<swiper-item>
+<view>我是tab4</view>
+</swiper-item>
+</swiper>
 </view>
