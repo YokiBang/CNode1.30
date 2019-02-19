@@ -3,27 +3,7 @@
   height: 100%;
   overflow: hidden;
 }
-/*导航 nav*/
-.top-bar {
-  height: 72rpx;
-  background: #444;
-  width:100%;
-  position: fixed;
-  top:0;
-  z-index:1;
-}
-.top-bar-item {
-  display:inline-block;
-  width: 150rpx;
-  color: #80bd01;
-  text-align: center;
-  /* line-height: 72rpx; */
-  font-size: 28rpx;
-}
-.top-bar-active{
-  color: #fff;
-  font-size: 32rpx;
-}
+
 
 /*列表 list*/
 .scroll-posts-list{
