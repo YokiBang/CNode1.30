@@ -15,7 +15,6 @@
       <view class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">关于</view>
     </view>
   </view>
-    
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
     <swiper-item>
       <view>我是tab1</view>
