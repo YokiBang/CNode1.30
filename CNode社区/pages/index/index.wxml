@@ -6,7 +6,7 @@
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       <template is="Header" data="{{ Headerlist, activeIndex }}"/>
   </view>
-  <view class="top-bar">
+  
     <view class="swiper-tab">
       <view class="bar-info-item" class="bar-info-item-number" class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">点赞</view>
       <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">收藏</view>
@@ -14,7 +14,7 @@
       <view class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">消息</view>
       <view class="tab-item {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">关于</view>
     </view>
-  </view>
+
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
     <swiper-item>
       <view>我是tab1</view>
