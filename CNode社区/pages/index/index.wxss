@@ -1,5 +1,8 @@
 /**index.wxss**/
 /*导航 nav*/
+.page me{
+  margin: 0 auto;
+}
 .top-bar {
   height: 72rpx;
   background: #444;
@@ -25,7 +28,7 @@
 }
 .userinfo{
   position: relative;
-  width: 750rpx;
+  width: 100%;
   height: 320rpx;
   background: #444;
   color: #fff;
@@ -78,7 +81,6 @@
 }
 
 
-.page { margin-left: 10rpx; margin-right: 10rpx; }  
 .swiper-tab { display: flex; flex-direction: row; line-height: 80rpx; border-bottom: 2rpx solid #777; }  
 .tab-item { width: 33.3%; text-align: center; font-size: 15px; color: #777; }  
 .swiper { height: 400px; background: #fff; }  
