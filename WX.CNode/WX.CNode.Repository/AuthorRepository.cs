@@ -44,6 +44,13 @@ namespace WX.CNode.Repository
                 {
                     return null;
                 }
+                else
+                {
+                    clientinfo.id = client.id;
+                    clientinfo.loginname = client.loginname;
+                    clientinfo.avatar_url = client.avatar_url;
+                    clientinfo.DataID = client.DataID;
+                }
                 // RedisHelper.Set<ClientInfo>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
                 return clientinfo;
             }
