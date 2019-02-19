@@ -10,6 +10,12 @@ namespace WX.CNode.IRepository
     public interface IAuthorRepository
     {
         /// <summary>
+        /// 获取令牌
+        /// </summary>
+        /// <param name="code">accesstoken</param>
+        /// <returns></returns>
+        Author Logins(string code);
+        /// <summary>
         /// 登录
         /// </summary>
         /// <param name="accesstoken"></param>
