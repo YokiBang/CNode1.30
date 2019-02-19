@@ -8,6 +8,8 @@ namespace WX.CNode.Model
 {
     public class Author
     {
+        public string session_key { get; set; } //用户令牌
+        public string OpenId { get; set; }  //OpendId
         /// <summary>
         /// 主键
         /// </summary>
