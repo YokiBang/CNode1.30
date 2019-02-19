@@ -1,4 +1,3 @@
-/* pages/history/history.wxss */
 .topics{
   height: 100%;
   overflow: hidden;
