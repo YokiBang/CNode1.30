@@ -20,7 +20,7 @@ Page({
   isLogin: function () {
     var that = this;
     var accesstoken = that.data.accesstoken;
-    var ApiUrl = Api.accesstoken + "?accesstoken=" + accesstoken;
+    var ApiUrl = Api.accesstoken + "?code=" + accesstoken;
     if (accesstoken === "") return;
     that.setData({ loading: true });
     Api.fetchPost(ApiUrl, { accesstoken: accesstoken }, (err, res) => {
@@ -30,7 +30,9 @@ Page({
           accesstoken: accesstoken,
           id: res.id,
           loginname: res.loginname,
-          avatar_url: res.avatar_url
+          avatar_url: res.avatar_url,
+          OpenId:OpenId,
+          session_key: session_key
         };
         console.log(CuserInfo)
         wx.setStorageSync('CuserInfo', CuserInfo);
@@ -39,7 +41,7 @@ Page({
           wx.navigateTo({
             url: '/pages/index/index'
           })
-          //wx.navigateBack();
+          wx.navigateBack();
         }, 3000);
       } else {
         that.setData({ error: res.error_msg });
