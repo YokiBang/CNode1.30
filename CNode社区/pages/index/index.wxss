@@ -81,7 +81,7 @@
 }
 
 
-.swiper-tab { display: flex; flex-direction: row; line-height: 80rpx; border-bottom: 2rpx solid #777; }  
+.swiper-tab { display: flex; flex-direction: row; line-height: 80rpx; border-bottom: 2rpx solid #777;background: #ccc; }  
 .tab-item { width: 33.3%; text-align: center; font-size: 15px; color: #777; }  
 .swiper { height: 400px; background: #fff; }  
 .on { display:inline-block;
