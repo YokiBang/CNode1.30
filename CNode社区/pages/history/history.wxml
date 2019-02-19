@@ -1,3 +1,5 @@
+<template name="history">
+123历史页面
 <!--列表list组件 -->
 <scroll-view class="scroll-posts-list"  scroll-y="true" style="height:100%"  bindscrolltolower="lower">
   <view class="postslist">
@@ -50,6 +52,4 @@
     </block>
   </view>
 </scroll-view>
-
-
-
+</template>
