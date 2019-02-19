@@ -1,7 +1,7 @@
 <!--<import src="../history/history.wxml"/>-->
 <!--index.wxml-->
 <view class="page me">
-  <view class="userinfo">
+  <view class="userinfos">
     <image class="userinfo-avatar" src="http://localhost:1026{{userInfo.avatar_url}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       <!--<template is="Header" data="{{ Headerlist, activeIndex }}"/>-->
@@ -25,7 +25,8 @@
     </swiper-item>
 
     <swiper-item>
-      <!--<template is="history" data="{{postsList}}"/>-->
+      <import src="../common/list.wxml"/>
+<template is="list" data="{{ postsList, hidden }}"/>
     </swiper-item>
 
     <swiper-item>

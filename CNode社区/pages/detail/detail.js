@@ -25,6 +25,7 @@ Page({
     that.setData({
       hidden: false
     });
+
     Api.fetchGet(ApiUrl, (err, res) => {
       console.log(res);
       res.create_at = util.getDateDiff(new Date(res.create_at));
