@@ -20,14 +20,14 @@ namespace WX.CNode.Repository
         /// <returns></returns>
         public Author Logins(string code)
         {
-            try
-            {
+            //try
+            //{
                 Author clientinfo = new Author();
                 HttpClient httpclient = new HttpClient();
 
                 //登陆公众平台 开发->基本配置中的开发者ID(AppID)和 开发者密码(AppSecret)
                 string appid = "wx12f770201e77142b";//开发者ID
-                string secret = "ac514fd8abae4b33aafc094f5aa2aa59";//开发者秘钥
+                string secret = "7236c7537bc3fdf1a4ed6046c1a3701e";//开发者秘钥
                 httpclient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = httpclient.PostAsync("https://api.weixin.qq.com/sns/jscode2session?appid=" + appid + "&secret=" + secret + "&js_code=" + code.ToString() + "&grant_type=authorization_code", null).Result;
                 var result = "";
@@ -53,11 +53,11 @@ namespace WX.CNode.Repository
                 }
                 // RedisHelper.Set<ClientInfo>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
                 return clientinfo;
-            }
-            catch
-            {
-                return null;
-            }
+            //}
+            //catch
+            //{
+            //    return null;
+            //}
         }
         /// <summary>
         /// 登录判断
