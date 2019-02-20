@@ -27,6 +27,8 @@ var zan = HOST + "/zan";
 var job = HOST + '/job';
 //历史
 var history = HOST + "/GetHistoryList";
+//发布
+var addjob = HOST + "/Addjob";
 
 // get请求方法
 function fetchGet(url, callback) {
@@ -75,5 +77,6 @@ module.exports = {
   history: history,	
   fetchGet: fetchGet,
   fetchPost: fetchPost,
-  job : job
+  job : job,
+  addjob: addjob
 }
