@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/topics/topics",
-    "pages/detail/detail",
     "pages/login/login",
     "pages/index/index",
+    "pages/topics/topics",
+    "pages/detail/detail",
     "pages/logs/logs",
     "pages/publish/publish",
     "pages/collect/collect",

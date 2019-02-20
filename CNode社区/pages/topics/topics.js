@@ -26,10 +26,8 @@ Page({
   onLoad: function () {
 
     var accesstoken = wx.getStorageSync('CuserInfo').id;
-
     if (!accesstoken) {
       this.setData({ modalHidden: false });
-  
       return;
     }
     this.setData({ id: accesstoken });

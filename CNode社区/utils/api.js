@@ -8,7 +8,7 @@ var topic = HOST + '/topic';
 //get /collectid 用户id收藏
 var collectid = HOST + '/GetCollectAuthorid';
 // get /accesstoken 验证 accessToken 的正确性
-var accesstoken = HOST + '/accesstoken';
+var accesstoken = HOST + '/Logins';
 //消息提示
 var readableList = HOST + '/GetReadableList';
 //消息提示(条数)

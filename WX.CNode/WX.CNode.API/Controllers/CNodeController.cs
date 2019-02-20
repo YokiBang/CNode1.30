@@ -9,6 +9,7 @@ using WX.CNode.IRepository;
 using WX.CNode.Cache;
 using ServiceStack.Redis;
 using WX.CNode.Model;
+using WX.CNode.API.App_Start;
 
 namespace WX.CNode.API.Controllers
 {
@@ -82,7 +83,7 @@ namespace WX.CNode.API.Controllers
         }
 
         
-
+        [RequestAuthorize()]
         /// <summary>
         /// 登录验证
         /// </summary>
@@ -92,6 +93,11 @@ namespace WX.CNode.API.Controllers
         public Author accesstoken(string accesstoken)
         {
             Author author = AuthorService.GetAuthor(accesstoken);
+            return author;
+        }
+        public Author Logins(string code)
+        {
+            Author author = AuthorService.Logins(code);
             return author;
         }
 
