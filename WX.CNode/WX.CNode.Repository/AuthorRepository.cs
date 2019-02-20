@@ -20,8 +20,8 @@ namespace WX.CNode.Repository
         /// <returns></returns>
         public Author Logins(string code)
         {
-            //try
-            //{
+            try
+            {
                 Author clientinfo = new Author();
                 HttpClient httpclient = new HttpClient();
 
@@ -53,11 +53,11 @@ namespace WX.CNode.Repository
                 }
                 // RedisHelper.Set<ClientInfo>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
                 return clientinfo;
-            //}
-            //catch
-            //{
-            //    return null;
-            //}
+            }
+            catch
+            {
+                return null;
+            }
         }
         /// <summary>
         /// 登录判断
