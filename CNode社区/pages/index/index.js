@@ -15,7 +15,6 @@ Page({
     modalHidden: true,
     id: 0
   },
-  
   onPullDownRefresh: function () {
     this.getData();
     console.log('下拉刷新', new Date());
@@ -26,6 +25,7 @@ Page({
   },
   // 点击获取对应分类的数据
   onTapTag: function (e) {
+
     var that = this;
     var tab = e.currentTarget.id;
     var index = e.currentTarget.dataset.index;
@@ -48,24 +48,33 @@ Page({
     var tab = that.data.tab;
     var page = that.data.page;
     var limit = that.data.limit;
-    var ApiUrl = Api.history + '?roleid=' + id;
+    console.log("swiperChange");
+    var currentTab = this.data.currentTab;
     that.setData({ hidden: false });
     if (page == 1) {
       that.setData({ postsList: [] });
     }
-    Api.fetchGet(ApiUrl, (err, res) => {
-      console.log(res);
-      //更新数据
-      that.setData({
-        postsList: that.data.postsList.concat(res.map(function (item) {
-          item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
-          return item;
-        }))
-      });
-      setTimeout(function () {
-        that.setData({ hidden: true });
-      }, 300);
-    })
+    var apiurl="";
+    if (currentTab == 2) {
+       apiurl = Api.history + '?roleid=' + 1;
+    }
+    else if(currentTab==1)
+    {
+       apiurl=Api.collectid + '?Authorid=' + 1;
+    }
+    Api.fetchGet(apiurl, (err, res) => {
+        console.log(res);
+        //更新数据
+        that.setData({
+          postsList: that.data.postsList.concat(res.map(function (item) {
+            item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+            return item;
+          }))
+        });
+        setTimeout(function () {
+          that.setData({ hidden: true });
+        }, 300);
+      })
   },
   // 滑动底部加载
   lower: function () {
@@ -93,6 +102,7 @@ Page({
   },
 
   swichNav: function (e) {
+    console.log("swichnav");
     console.log(e);
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
@@ -105,12 +115,12 @@ Page({
     }
   },
   swiperChange: function (e) {
-    console.log(e);
+    
     this.setData({
       currentTab: e.detail.current,
     })
+    var rows=1;
   },
-  
   onLoad: function () {
     var accesstoken = wx.getStorageSync('CuserInfo').id;
     if (!accesstoken) {
@@ -121,7 +131,6 @@ Page({
     this.getData();
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    
     console.log(CuserInfo);
     that.setData({
       userInfo: CuserInfo
