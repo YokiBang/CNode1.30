@@ -9,6 +9,9 @@ Page({
     error: ""
   },
   onLoad: function () {
+     that.setData({
+       accesstoken: wx.getStorageSync('set').data
+     })
   },
   //事件处理函数
   bindKeyInput: function (e) {

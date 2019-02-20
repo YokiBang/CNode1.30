@@ -16,20 +16,20 @@ App({
             data: { code: res.code },
             success: function (res) {
               var set = wx.setStorage({
-                key: 'token',
-                data: res.data.Session_key,
+                key: res.data.Author.OpenId,
+                data: res.data.Author.Session_key,
                 success: function (res) {
                   console.log(res.data.Session_key)
                 },
                 fail: function (res) { },
                 complete: function (res) { },
               });
-              wx.getUserInfo({
-                success: function (res) {
-                  that.globalData.userInfo = res.userInfo
-                  typeof cb == "function" && cb(that.globalData.userInfo)
-                }
-              })
+              //wx.getUserInfo({
+              //  success: function (res) {
+              //    that.globalData.userInfo = res.userInfo
+              //    typeof cb == "function" && cb(that.globalData.userInfo)
+               // }
+              //})
             }
           })
         }
