@@ -12,7 +12,7 @@
       <view class="detail-post-time">楼主 发表于{{job.fabutime}}</view>
     </view>
         <view style='width:60px;' class="detail-collect-item" id="{{job.Activeid}}" catchtap="collect" wx:if="{{is_collect == true}}">取消收藏</view>
-    <view class="detail-collect-item" id="{{job.id}}" catchtap="collect" wx:if="{{is_collect == false}}">收藏</view>
+    <view class="detail-collect-item" id="{{job.Activeid}}" catchtap="collect" wx:if="{{is_collect == false}}">收藏</view>
   </view>
     <view class="detail-post-meta">
     <view class="detail-post-avatar">

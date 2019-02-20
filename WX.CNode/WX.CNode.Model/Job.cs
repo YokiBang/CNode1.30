@@ -52,6 +52,7 @@ namespace WX.CNode.Model
         public Author author { get; set; }
         public string loginname { get; set; }
          public string avatar_url { get; set; }
+        public bool is_collect { get; set; }
 
     }
 }
