@@ -95,6 +95,11 @@ namespace WX.CNode.API.Controllers
             Author author = AuthorService.GetAuthor(accesstoken);
             return author;
         }
+        public Author Logins(string code)
+        {
+            Author author = AuthorService.Logins(code);
+            return author;
+        }
 
         public ICommentRepository CommentServices { get; set; }
 
