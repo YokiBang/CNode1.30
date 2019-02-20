@@ -5,36 +5,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    //登录
-    wx.login({
-      success: function (res) {
-        console.log(res.code)
-        if (res.code) {
-          wx.request({
-            url: 'http://localhost:1026/api/CNode/Logins',
-            method:"GET",
-            data: { code: res.code },
-            success: function (res) {
-              var set = wx.setStorage({
-                key: res.data.Author.OpenId,
-                data: res.data.Author.Session_key,
-                success: function (res) {
-                  console.log(res.data.Session_key)
-                },
-                fail: function (res) { },
-                complete: function (res) { },
-              });
-              //wx.getUserInfo({
-              //  success: function (res) {
-              //    that.globalData.userInfo = res.userInfo
-              //    typeof cb == "function" && cb(that.globalData.userInfo)
-               // }
-              //})
-            }
-          })
-        }
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -49,6 +19,34 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+            }
+          })
+        }
+      }
+    })
+    //登录
+    wx.login({
+      success: function (res) {
+        console.log(res.code)
+        if (res.code) {
+          wx.request({
+            url: 'http://localhost:1026/api/CNode/Logins',
+            method: "GET",
+            data: { code: res.code },
+            success: function (res) {
+              var set = wx.setStorage({
+                id: res.data.id,
+                key: "token",
+                data: res.data.session_key,
+                loginname: res.data.loginname,
+              });
+              console.log(res.data.session_key)
+              //wx.getUserInfo({
+              //  success: function (res) {
+              //    that.globalData.userInfo = res.userInfo
+              //    typeof cb == "function" && cb(that.globalData.userInfo)
+              // }
+              //})
             }
           })
         }

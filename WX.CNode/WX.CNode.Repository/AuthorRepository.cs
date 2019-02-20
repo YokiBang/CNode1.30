@@ -40,7 +40,16 @@ namespace WX.CNode.Repository
                 var results = JsonConvert.DeserializeObject<Author>(result);
                 clientinfo.OpenId = results.OpenId;//用户唯一标识
                 clientinfo.session_key = results.session_key;//密钥
-                RedisHelper.Set<Author>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
+                clientinfo.loginname = results.OpenId;
+                var client = GetAuthor(clientinfo.OpenId);//判断是否为已注册用户
+                if (client == null)
+                {
+                    PostAuthor(clientinfo.OpenId);
+                    var author = GetAuthor(clientinfo.OpenId);
+                    clientinfo.id = author.id;
+                    clientinfo.loginname = author.loginname;
+                }
+                clientinfo.success = true;
                 return clientinfo;
             }
             catch
