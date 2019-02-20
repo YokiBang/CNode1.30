@@ -11,5 +11,7 @@ namespace WX.CNode.IRepository
     public interface IJobRepository
     {
         Job GetJobList(int id);
+
+        int Addjob(string Jobtitle, string Jobname, string Jobaddress, string JobMes, string Jobask, string Jobemail, int Authorid);
     }
 }
