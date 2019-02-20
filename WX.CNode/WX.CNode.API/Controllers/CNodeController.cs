@@ -95,6 +95,7 @@ namespace WX.CNode.API.Controllers
             Author author = AuthorService.GetAuthor(accesstoken);
             return author;
         }
+        [HttpGet]
         public Author Logins(string code)
         {
             Author author = AuthorService.Logins(code);

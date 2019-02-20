@@ -102,6 +102,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WX.CNode.Cache\WX.CNode.Cache.csproj">
+      <Project>{2723a13d-ad37-409e-bed6-9bf562d37a79}</Project>
+      <Name>WX.CNode.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WX.CNode.IRepository\WX.CNode.IRepository.csproj">
       <Project>{53c4f720-878d-421b-858e-a3466030eeba}</Project>
       <Name>WX.CNode.IRepository</Name>

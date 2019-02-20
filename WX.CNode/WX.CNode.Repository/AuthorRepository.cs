@@ -10,6 +10,7 @@ namespace WX.CNode.Repository
     using WX.CNode.IRepository;
     using System.Net.Http;
     using Newtonsoft.Json;
+    using WX.CNode.Cache;
 
     public class AuthorRepository : IAuthorRepository
     {
@@ -39,19 +40,7 @@ namespace WX.CNode.Repository
                 var results = JsonConvert.DeserializeObject<Author>(result);
                 clientinfo.OpenId = results.OpenId;//用户唯一标识
                 clientinfo.session_key = results.session_key;//密钥
-                var client = GetAuthor(code);//判断是否为已注册用户
-                if (client == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    clientinfo.id = client.id;
-                    clientinfo.loginname = client.loginname;
-                    clientinfo.avatar_url = client.avatar_url;
-                    clientinfo.DataID = client.DataID;
-                }
-                // RedisHelper.Set<ClientInfo>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
+                RedisHelper.Set<Author>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
                 return clientinfo;
             }
             catch
