@@ -191,5 +191,16 @@ namespace WX.CNode.API.Controllers
             int a = JobService.Addjob(Jobtitle,Jobname,Jobaddress,JobMes,Jobask,Jobemail,Authorid);
             return a;
         }
+
+        /// <summary>
+        /// 查看点过赞的评论
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public List<Comment> GetPraiseList(int roleid)
+        {
+            List<Comment> commentlist = CollectService.GetPraiseList(roleid);
+            return commentlist;
+        }
     }
 }
