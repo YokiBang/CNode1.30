@@ -10,6 +10,7 @@ namespace WX.CNode.Repository
     using WX.CNode.IRepository;
     using System.Net.Http;
     using Newtonsoft.Json;
+    using WX.CNode.Cache;
 
     public class AuthorRepository : IAuthorRepository
     {
@@ -27,7 +28,7 @@ namespace WX.CNode.Repository
 
                 //登陆公众平台 开发->基本配置中的开发者ID(AppID)和 开发者密码(AppSecret)
                 string appid = "wx12f770201e77142b";//开发者ID
-                string secret = "ac514fd8abae4b33aafc094f5aa2aa59";//开发者秘钥
+                string secret = "7236c7537bc3fdf1a4ed6046c1a3701e";//开发者秘钥
                 httpclient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = httpclient.PostAsync("https://api.weixin.qq.com/sns/jscode2session?appid=" + appid + "&secret=" + secret + "&js_code=" + code.ToString() + "&grant_type=authorization_code", null).Result;
                 var result = "";
@@ -39,19 +40,16 @@ namespace WX.CNode.Repository
                 var results = JsonConvert.DeserializeObject<Author>(result);
                 clientinfo.OpenId = results.OpenId;//用户唯一标识
                 clientinfo.session_key = results.session_key;//密钥
-                var client = GetAuthor(code);//判断是否为已注册用户
+                clientinfo.loginname = results.OpenId;
+                var client = GetAuthor(clientinfo.OpenId);//判断是否为已注册用户
                 if (client == null)
                 {
-                    return null;
+                    PostAuthor(clientinfo.OpenId);
+                    var author = GetAuthor(clientinfo.OpenId);
+                    clientinfo.id = author.id;
+                    clientinfo.loginname = author.loginname;
                 }
-                else
-                {
-                    clientinfo.id = client.id;
-                    clientinfo.loginname = client.loginname;
-                    clientinfo.avatar_url = client.avatar_url;
-                    clientinfo.DataID = client.DataID;
-                }
-                // RedisHelper.Set<ClientInfo>(clientinfo.session_key, clientinfo, DateTime.Now.AddHours(10));
+                clientinfo.success = true;
                 return clientinfo;
             }
             catch

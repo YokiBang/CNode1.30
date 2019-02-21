@@ -7,8 +7,8 @@ var topics = HOST + '/topics';
 var topic = HOST + '/topic';
 //get /collectid 用户id收藏
 var collectid = HOST + '/GetCollectAuthorid';
-// get /accesstoken 验证 accessToken 的正确性
-var accesstoken = HOST + '/Logins';
+// post /accesstoken 验证 accessToken 的正确性
+var accesstoken = HOST + '/accesstoken';
 //消息提示
 var readableList = HOST + '/GetReadableList';
 //消息提示(条数)
@@ -27,6 +27,8 @@ var zan = HOST + "/zan";
 var job = HOST + '/job';
 //历史
 var history = HOST + "/GetHistoryList";
+//发布
+var addjob = HOST + "/Addjob";
 
 // get请求方法
 function fetchGet(url, callback) {
@@ -75,5 +77,6 @@ module.exports = {
   history: history,	
   fetchGet: fetchGet,
   fetchPost: fetchPost,
-  job : job
+  job : job,
+  addjob: addjob
 }

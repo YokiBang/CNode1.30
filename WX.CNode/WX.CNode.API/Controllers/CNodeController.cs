@@ -95,6 +95,12 @@ namespace WX.CNode.API.Controllers
             Author author = AuthorService.GetAuthor(accesstoken);
             return author;
         }
+        [HttpGet]
+        public Author Logins(string code)
+        {
+            Author author = AuthorService.Logins(code);
+            return author;
+        }
 
         public ICommentRepository CommentServices { get; set; }
 
@@ -173,6 +179,17 @@ namespace WX.CNode.API.Controllers
         {
             int counts = ReadableService.GetReadableCount(AuthorId);
             return counts;
+        }
+        /// <summary>
+        /// 发布招聘信息
+        /// </summary>
+        /// <param name="job"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public int Addjob(string Jobtitle, string Jobname, string Jobaddress, string JobMes, string Jobask, string Jobemail, int Authorid)
+        {
+            int a = JobService.Addjob(Jobtitle,Jobname,Jobaddress,JobMes,Jobask,Jobemail,Authorid);
+            return a;
         }
     }
 }
