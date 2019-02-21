@@ -5,11 +5,11 @@
     "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/publish/publish",
     "pages/collect/collect",
     "pages/history/history",
     "pages/news/news",
-    "pages/Job/Job"
+    "pages/Job/Job",
+    "pages/fabu/fabu"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,7 +32,7 @@
         "selectedIconPath": "images/bar/CNodeHL.png"
       },
       {
-        "pagePath": "pages/publish/publish",
+        "pagePath": "pages/fabu/fabu",
         "text": "发布",
         "iconPath": "images/bar/add.png",
         "selectedIconPath": "images/bar/jiahao2fill.png"
