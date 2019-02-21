@@ -1,0 +1,60 @@
+/* pages/fabu/fabu.wxss */
+.txt{
+      border: 1px solid black;
+      width: 300px;
+}
+.top-bar-item {
+  display:inline-block;
+  width: 250rpx;
+  color: #80bd01;
+  text-align: center;
+  /* line-height: 72rpx; */
+  font-size: 28rpx;
+}
+/*导航 nav*/
+.top-bar {
+  height: 72rpx;
+  background: #444;
+  width:100%;
+  position: fixed;
+  top:0;
+  z-index:2;
+}
+.submit{
+  text-align: center;
+  font-size: 15px;
+  width:  200rpx;
+  height: 30px;
+  margin: 20px auto;
+  margin-top: 20px auto;
+  background: rgba(192, 96, 79, 0.623);
+}
+.container{
+  text-align: center;
+  width:  480rpx;
+  height: 300px;
+  margin: 20px auto;
+  margin-top: 20px auto;
+  padding: 10rpx 15rpx;
+  border-bottom: 1rpx solid rgba(136, 136, 136, 0.6);
+  background: rgba(136, 136, 136, 0.6);
+}
+.share-item{
+  text-align: center;
+  width:  460rpx;
+  margin: 20px auto;
+  margin-top: 20px auto;
+  padding: 10rpx 15rpx;
+  border-bottom: 1rpx solid rgba(136, 136, 136, 0.6);
+  background: rgba(136, 136, 136, 0.6);
+}
+.share-radio{
+  width:  460rpx;
+  margin: 20px auto;
+  margin-top: 20px auto;
+  color: rgba(136, 136, 136, 0.938);
+}
+.scroll-posts-list{
+  overflow: hidden;
+  margin-top: 72rpx;
+}
