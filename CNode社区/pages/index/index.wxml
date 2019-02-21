@@ -17,16 +17,17 @@
 
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
     <swiper-item>
-      <view>我是tab1</view>
+      <view>我是点赞页面</view>
     </swiper-item>
 
     <swiper-item>
-      <view>我是tab2</view>
+      <view>我是收藏
+      </view>
     </swiper-item>
 
     <swiper-item>
       <import src="../common/list.wxml"/>
-<template is="list" data="{{ postsList, hidden }}"/>
+      <template is="list" data="{{ postsList, hidden }}"/>
     </swiper-item>
 
     <swiper-item>
