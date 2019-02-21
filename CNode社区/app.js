@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    console.log(wx.getStorageSync('CuserInfo'));
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -27,20 +28,21 @@ App({
     //登录
     wx.login({
       success: function (res) {
-        console.log(res.code)
         if (res.code) {
+          var loginname = wx.getStorageSync('CuserInfo').loginname;
+          //console.log(wx.getStorageSync('CuserInfo'));
           wx.request({
             url: 'http://localhost:1026/api/CNode/Logins',
             method: "GET",
-            data: { code: res.code },
+            data: { code: res.code, loginname: loginname },
             success: function (res) {
               var set = wx.setStorage({
                 id: res.data.id,
                 key: "token",
                 data: res.data.session_key,
                 loginname: res.data.loginname,
+                code:res.data.code
               });
-              console.log(res.data.session_key)
               //wx.getUserInfo({
               //  success: function (res) {
               //    that.globalData.userInfo = res.userInfo

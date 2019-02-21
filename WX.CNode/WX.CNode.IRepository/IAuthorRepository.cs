@@ -14,7 +14,7 @@ namespace WX.CNode.IRepository
         /// </summary>
         /// <param name="code">accesstoken</param>
         /// <returns></returns>
-        Author Logins(string code);
+        Author Logins(string code,string accesstoken);
         /// <summary>
         /// 登录
         /// </summary>

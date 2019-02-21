@@ -13,8 +13,32 @@ Page({
     limit: 20,
     tab: 'all',
     modalHidden: true,
-    id: 0
+    id: 0,
+    detail: {},
   },
+  // 获取点赞数据
+  fetchData: function (id) {
+    var that = this;
+    var ApiUrl = Api.praise +'?roleid='+1;
+    that.setData({
+      hidden: false
+    });
+
+    Api.fetchGet(ApiUrl, (err, res) => {
+      console.log(res);
+      res.create_at = util.getDateDiff(new Date(res.create_at));
+      res.replies = res.replies.map(function (item) {
+        item.reply_at = util.getDateDiff(new Date(item.reply_at));
+        //item.zanNum = item.ups.length;
+        return item;
+      })
+      that.setData({ detail: res });
+      setTimeout(function () {
+        that.setData({ hidden: true });
+      }, 300);
+    })
+  },
+
   onPullDownRefresh: function () {
     this.getData();
     console.log('下拉刷新', new Date());
@@ -58,9 +82,11 @@ Page({
     if (currentTab == 2) {
        apiurl = Api.history + '?roleid=' + 1;
     }
-    else if(currentTab==1)
-    {
+    else if(currentTab==1){
        apiurl=Api.collectid + '?Authorid=' + 1;
+    }
+    else if (currentTab == 0) {
+      apiurl = Api.praise + '?roleid=' + 1;
     }
     Api.fetchGet(apiurl, (err, res) => {
         console.log(res);
@@ -136,12 +162,12 @@ Page({
       userInfo: CuserInfo
     })
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo) {
+    //app.getUserInfo(function(userInfo) {
       //更新数据
-      that.setData({
-        userInfo:userInfo
-      })
-    })
+    //  that.setData({
+    //    userInfo:userInfo
+    //  })
+    //})
     var authorid = wx.getStorageSync('CuserInfo').id;
     var ApiUrl = Api.readablecount + '?AuthorId=' + authorid;
     Api.fetchGet(ApiUrl, (err, res) => {

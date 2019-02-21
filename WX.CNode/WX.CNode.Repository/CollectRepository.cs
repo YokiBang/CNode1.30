@@ -41,6 +41,11 @@ namespace WX.CNode.Repository
             return actives;
         }
 
+        /// <summary>
+        /// 历史
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
         public List<Active> GetHistoryList(int roleid)
         {
             string sql = string.Format("select active.*,author.loginname,dataresource.avatar_url,type.tab,(select count(*) from `comment` where `comment`.ActiveID=active.id)as reply_count,(select reply_at from `comment` where `comment`.ActiveID=active.id ORDER BY(reply_at) desc limit 0,1) as last_reply_at,(SELECT is_collect from collect where Authorid = " + roleid + " and Activeid = active.id) as is_collect from active join author on author.id=PublisherID join dataresource on dataresource.id=author.DataID join type on type.id=active.TypeID where active.PublisherID = {0}", roleid);
@@ -79,5 +84,20 @@ namespace WX.CNode.Repository
 
                 return activelist;
             }
+
+        /// <summary>
+        /// 查看点过赞的评论
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public List<Comment> GetPraiseList(int roleid)
+        {
+            string sql = string.Format(@"SELECT dataresource.avatar_url,author.loginname,`comment`.*,clickgood.* 
+                                         from dataresource JOIN author on dataresource.id = author.DataID JOIN `comment` 
+                                         ON `comment`.AuthorID = author.id JOIN clickgood ON clickgood.Commentid =`comment`.id
+                                         WHERE clickgood.Authorid ='{0}'",roleid);
+            List<Comment> commentlist = MySqlDapper.Query<Comment>(sql);
+            return commentlist;
+        }
     }
 }

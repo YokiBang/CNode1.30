@@ -3,7 +3,7 @@
 <view class="page me">
   <view class="userinfos">
     <image class="userinfo-avatar" src="http://localhost:1026{{userInfo.avatar_url}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="userinfo-nickname">{{userInfo.loginname}}</text>
       <!--<template is="Header" data="{{ Headerlist, activeIndex }}"/>-->
   </view>
   
@@ -17,8 +17,27 @@
 
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
     <swiper-item>
-      <view>我是点赞页面</view>
-    </swiper-item>
+    <view class="detail-post-comment-list"  >
+        <block wx:for='{{postsList}}' wx:if='{{postsList.length>0}}'>
+        <view index="{{index}}" id="{{item.id}}">
+            <view class="detail-post-comment-avatar">
+              <image class="detail-post-comment-avatar-img" mode="scaleToFill" src="http://localhost:1026{{ item.avatar_url }}"></image>
+            </view>
+        </view>
+            <view>{{item.loginname}}</view>
+            <view>内容：{{item.content}}</view>
+            <view>发布时间：{{item.last_reply_at}}{{item.reply_at}}</view>
+            <view>已点赞<image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zanhl.png"></image></view>
+        </block>
+
+        <block wx:if="{{detail.replies.length < 0}}">
+          <view class="detail-post-comment-null">
+            <image class="imgnull" mode="scaleToFill" src="/images/icon/null.png"></image>
+            <text class="textnull">暂无收录评论 </text>
+          </view>
+        </block>
+    </view>
+  </swiper-item>
 
     <swiper-item>
       <view>我是收藏

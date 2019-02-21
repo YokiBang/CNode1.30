@@ -19,7 +19,7 @@ namespace WX.CNode.Repository
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public Author Logins(string code)
+        public Author Logins(string code,string accesstoken)
         {
             try
             {
@@ -37,19 +37,13 @@ namespace WX.CNode.Repository
                     result = response.Content.ReadAsStringAsync().Result;
                 }
                 httpclient.Dispose();
-                var results = JsonConvert.DeserializeObject<Author>(result);
-                clientinfo.OpenId = results.OpenId;//用户唯一标识
-                clientinfo.session_key = results.session_key;//密钥
-                clientinfo.loginname = results.OpenId;
-                var client = GetAuthor(clientinfo.OpenId);//判断是否为已注册用户
-                if (client == null)
+                var client = GetAuthor(accesstoken);//判断是否为已注册用户
+                if (client != null)
                 {
-                    PostAuthor(clientinfo.OpenId);
-                    var author = GetAuthor(clientinfo.OpenId);
-                    clientinfo.id = author.id;
-                    clientinfo.loginname = author.loginname;
+                    clientinfo = client;
+                    clientinfo.success = true;
                 }
-                clientinfo.success = true;
+                
                 return clientinfo;
             }
             catch
@@ -64,24 +58,13 @@ namespace WX.CNode.Repository
         /// <returns></returns>
         public Author GetAuthor(string accesstoken)
         {
-            string sql = "select author.*,dataresource.avatar_url from author join dataresource on author.DataID = dataresource.id where loginname = '" + accesstoken + "'";
+            string sql = "select author.*,dataresource.avatar_url from author join dataresource on author.DataID = dataresource.id where OpenId = '" + accesstoken + "'";
             Author author = MySqlDapper.Query<Author>(sql).FirstOrDefault();
             if (author != null)
             {
                 author.success = true;
             }
             return author;
-        }
-        /// <summary>
-        /// 添加用户
-        /// </summary>
-        /// <param name="accesstoken"></param>
-        /// <returns></returns>
-        public int PostAuthor(string accesstoken)
-        {
-            string sql = "insert into author values(id,'" + accesstoken + "','1')";
-            int rows = MySqlDapper.Execute(sql);
-            return rows;
         }
     }
 }

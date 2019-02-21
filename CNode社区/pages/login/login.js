@@ -9,15 +9,6 @@ Page({
     error: ""
   },
   onLoad: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'token',
-      success: function (loginname) {
-        that.setData({
-          accesstoken: loginname.data
-        })
-      }
-    })
   },
   //事件处理函数
   bindKeyInput: function (e) {
@@ -29,12 +20,13 @@ Page({
   isLogin: function () {
     var that = this;
     var accesstoken = that.data.accesstoken;
-    var ApiUrl = Api.accesstoken + "?accesstoken=" + accesstoken;
+    var ApiUrl = Api.accesstoken;
     if (accesstoken === "") return;
     that.setData({ loading: true });
     Api.fetchPost(ApiUrl, { accesstoken: accesstoken }, (err, res) => {
       console.log(res.success);
       if (res.success) {
+        wx.setStorageSync('CuserInfo', res);
         setTimeout(function () {
           that.setData({ loading: false });
           wx.navigateTo({

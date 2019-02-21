@@ -22,5 +22,14 @@ namespace WX.CNode.IRepository
         /// <param name="Authorid"></param>
         /// <returns></returns>
         List<Active> GetHistoryList(int roleid);
+
+        /// <summary>
+        /// 查看点过赞的评论
+        /// </summary>
+        /// <param name="Authorid"></param>
+        /// <returns></returns>
+        List<Comment> GetPraiseList(int roleid);
+
+
     }
 }

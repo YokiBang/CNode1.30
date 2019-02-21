@@ -96,9 +96,9 @@ namespace WX.CNode.API.Controllers
             return author;
         }
         [HttpGet]
-        public Author Logins(string code)
+        public Author Logins(string code,string loginname)
         {
-            Author author = AuthorService.Logins(code);
+            Author author = AuthorService.Logins(code,loginname);
             return author;
         }
 
@@ -190,6 +190,17 @@ namespace WX.CNode.API.Controllers
         {
             int a = JobService.Addjob(Jobtitle,Jobname,Jobaddress,JobMes,Jobask,Jobemail,Authorid);
             return a;
+        }
+
+        /// <summary>
+        /// 查看点过赞的评论
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public List<Comment> GetPraiseList(int roleid)
+        {
+            List<Comment> commentlist = CollectService.GetPraiseList(roleid);
+            return commentlist;
         }
     }
 }

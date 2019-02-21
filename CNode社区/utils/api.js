@@ -29,6 +29,8 @@ var job = HOST + '/job';
 var history = HOST + "/GetHistoryList";
 //发布
 var addjob = HOST + "/Addjob";
+//查看点赞的评论
+var praise = HOST + "/GetPraiseList";
 
 // get请求方法
 function fetchGet(url, callback) {
@@ -75,6 +77,7 @@ module.exports = {
   de_collect: de_collect,
   zan: zan,
   history: history,	
+  praise: praise,
   fetchGet: fetchGet,
   fetchPost: fetchPost,
   job : job,
