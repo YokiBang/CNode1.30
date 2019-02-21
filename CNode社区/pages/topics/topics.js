@@ -24,7 +24,6 @@ Page({
   },
   
   onLoad: function () {
-
     var accesstoken = wx.getStorageSync('CuserInfo').id;
     if (!accesstoken) {
       this.setData({ modalHidden: false });
@@ -81,7 +80,12 @@ Page({
       //更新数据
       that.setData({
         postsList: that.data.postsList.concat(res.map(function (item) {
-          item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+          if(item.last_reply_at!=null){
+            item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+          }
+          else{
+            item.last_reply_at="暂无评论";
+          }
           return item;
         }))
       });

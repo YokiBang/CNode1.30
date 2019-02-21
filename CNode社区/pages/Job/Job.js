@@ -24,7 +24,7 @@ Page({
   },
 
   fetchData: function (id) {
-
+    console.log(id);
     var that = this;
     var ApiUrl = Api.job + '/' + id ;
     Api.fetchGet(ApiUrl, (err, res) => {
@@ -59,9 +59,7 @@ Page({
         });
       }
       else {
-        
         that.setData({
-
           is_collect : false,
           collectText: "收藏"
         });
