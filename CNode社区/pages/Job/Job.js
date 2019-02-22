@@ -44,8 +44,7 @@ Page({
     //var is_collect = that.data.is_collect;
     var accesstoken = wx.getStorageSync('CuserInfo');
     var id = e.currentTarget.id;
-    if (!id) return;
-    if (!accesstoken.accesstoken) {
+    if (!id) {
       that.setData({ modalHidden: false });
       return;
     }

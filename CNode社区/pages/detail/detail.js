@@ -47,8 +47,7 @@ Page({
     var that = this;
     var accesstoken = wx.getStorageSync('CuserInfo');
     var id = e.currentTarget.id;
-    if(!id) return;
-    if(!accesstoken.accesstoken){
+    if (!id) {
       that.setData({ modalHidden: false });
       return;
     }
@@ -81,11 +80,10 @@ Page({
     var id = e.currentTarget.id;
     var index = e.currentTarget.dataset.index;
     var ApiUrl = Api.zan + '?authorid=' + accesstoken.id + '&commentid=' + id;
-    if(!id) return;
-    if(!accesstoken.accesstoken){
+    if (!id) {
       that.setData({ modalHidden: false });
       return;
-     }
+    }
     Api.fetchGet(ApiUrl, (err, res) => {
       if (res) {
         var detail = that.data.detail;
