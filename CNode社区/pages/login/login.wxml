@@ -5,7 +5,7 @@
         <input placeholder="请输入Token" class="login-item-input" placeholder-style="color:#f5f5f5;" bindinput="bindKeyInput" name="tokens" value='{{accesstoken}}'/>
       </view>
       <view class="login-item-button">
-        <button type="primary" size="default" plain="false" loading="{{loading}}" class="login-button" bindtap="isLogin"> 登录 </button>
+        <button type="primary" size="default" plain="false" loading="{{loading}}" class="login-button" bindtap="isLogin"> 验证密钥 </button>
       </view>
       <view class="error-msg" wx:if="{{error}}">{{error}}</view>
   </view>
