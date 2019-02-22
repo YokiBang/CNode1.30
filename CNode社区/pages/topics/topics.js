@@ -40,7 +40,6 @@ Page({
 
   
   onReachBottom: function () {
-    this.lower();
     console.log('上拉刷新', new Date());
   },
 

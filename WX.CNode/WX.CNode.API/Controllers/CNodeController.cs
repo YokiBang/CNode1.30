@@ -82,14 +82,12 @@ namespace WX.CNode.API.Controllers
             return result;
         }
 
-        
-        [RequestAuthorize()]
         /// <summary>
         /// 登录验证
         /// </summary>
         /// <param name="accesstoken">验证凭证</param>
         /// <returns>登录账户信息</returns>
-        [HttpPost]
+        [HttpGet]
         public Author accesstoken(string accesstoken)
         {
             Author author = AuthorService.GetAuthor(accesstoken);

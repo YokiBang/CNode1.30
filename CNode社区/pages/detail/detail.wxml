@@ -48,7 +48,7 @@
   <view class="detail-post-comment">
     <view class="detail-post-comment-title">评论</view>
     <view class="detail-post-comment-list">
-      <block wx:for="{{ detail.replies }}" wx:if="{{detail.replies.length > 0}}">
+      <block wx:for="{{ detail.replies }}" wx:key="" wx:if="{{detail.replies.length > 0}}">
         <view class="detail-post-comment-item" index="{{index}}" id="{{item.id}}">
           <view class="detail-post-comment-avatar">
             <image class="detail-post-comment-avatar-img" mode="scaleToFill" src="http://localhost:1026{{ item.author.avatar_url }}"></image>

@@ -5,9 +5,6 @@
     "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/collect/collect",
-    "pages/history/history",
-    "pages/news/news",
     "pages/Job/Job",
     "pages/fabu/fabu"
   ],

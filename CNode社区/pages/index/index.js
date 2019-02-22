@@ -15,6 +15,7 @@ Page({
     modalHidden: true,
     id: 0,
     detail: {},
+    islogin:false
   },
   // 获取点赞数据
   fetchData: function (id) {
@@ -40,10 +41,35 @@ Page({
   },
 
   onPullDownRefresh: function () {
+    var accesstoken = wx.getStorageSync('CuserInfo').id;
+    if (!accesstoken) {
+      this.setData({ modalHidden: false });
+      return;
+    }
+    this.setData({ id: accesstoken, islogin: true });
     this.getData();
+    var that = this;
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    console.log(CuserInfo);
+    that.setData({
+      userInfo: CuserInfo
+    })
     console.log('下拉刷新', new Date());
   },
   onReachBottom: function () {
+    var accesstoken = wx.getStorageSync('CuserInfo').id;
+    if (!accesstoken) {
+      this.setData({ modalHidden: false });
+      return;
+    }
+    this.setData({ id: accesstoken, islogin: true });
+    this.getData();
+    var that = this;
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    console.log(CuserInfo);
+    that.setData({
+      userInfo: CuserInfo
+    })
     this.lower();
     console.log('上拉刷新', new Date());
   },
@@ -66,27 +92,32 @@ Page({
   },
   //获取文章列表数据
   getData: function () {
+    console.log(this.data.id);
     var that = this;
-    var id = that.data.id;
-    console.log(id);
     var tab = that.data.tab;
     var page = that.data.page;
     var limit = that.data.limit;
-    console.log("swiperChange");
     var currentTab = this.data.currentTab;
     that.setData({ hidden: false });
     if (page == 1) {
       that.setData({ postsList: [] });
     }
     var apiurl="";
+
     if (currentTab == 2) {
-       apiurl = Api.history + '?roleid=' + 1;
+       apiurl = Api.history + '?roleid=' + that.data.id;
     }
     else if(currentTab==1){
-       apiurl=Api.collectid + '?Authorid=' + 1;
+      apiurl = Api.collectid + '?Authorid=' + that.data.id;
     }
     else if (currentTab == 0) {
-      apiurl = Api.praise + '?roleid=' + 1;
+      apiurl = Api.praise + '?roleid=' + that.data.id;
+    }
+    else if (currentTab == 3) {
+      apiurl = Api.readableList + '?AuthorId=' + that.data.id;
+    }
+    else{
+      return;
     }
     Api.fetchGet(apiurl, (err, res) => {
         console.log(res);
@@ -94,6 +125,7 @@ Page({
         that.setData({
           postsList: that.data.postsList.concat(res.map(function (item) {
             item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+            item.reply_at = util.getDateDiff(new Date(item.reply_at));
             return item;
           }))
         });
@@ -128,8 +160,6 @@ Page({
   },
 
   swichNav: function (e) {
-    console.log("swichnav");
-    console.log(e);
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
@@ -141,11 +171,10 @@ Page({
     }
   },
   swiperChange: function (e) {
-    
     this.setData({
       currentTab: e.detail.current,
     })
-    var rows=1;
+      this.getData();
   },
   onLoad: function () {
     var accesstoken = wx.getStorageSync('CuserInfo').id;
@@ -153,8 +182,8 @@ Page({
       this.setData({ modalHidden: false });
       return;
     }
-    this.setData({ id: accesstoken });
-    this.getData();
+    this.setData({ id: accesstoken, islogin: true });
+    this.getData(); 
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
     console.log(CuserInfo);

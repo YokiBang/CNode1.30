@@ -20,19 +20,17 @@ Page({
   isLogin: function () {
     var that = this;
     var accesstoken = that.data.accesstoken;
-    var ApiUrl = Api.accesstoken;
+    var ApiUrl = Api.accesstoken +"?accesstoken="+accesstoken;
     if (accesstoken === "") return;
     that.setData({ loading: true });
-    Api.fetchPost(ApiUrl, { accesstoken: accesstoken }, (err, res) => {
+    Api.fetchGet(ApiUrl, (err, res) => {
       console.log(res.success);
       if (res.success) {
         wx.setStorageSync('CuserInfo', res);
         setTimeout(function () {
-          that.setData({ loading: false });
-          wx.navigateTo({
-            url: '/pages/index/index'
-          })
+          that.setData({ loading: false });    
           wx.navigateBack();
+          
         }, 3000);
       } else {
         that.setData({ error: res.error_msg });

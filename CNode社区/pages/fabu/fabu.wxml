@@ -12,10 +12,6 @@
       <input placeholder='输入标题' placeholder-style="color:#f6f6f6;" bindinput="bindKeyInput1"></input>
     </view>
     <view class='share-radio'>
-      <radio-group bindchange="radioChange">
-        <radio value="3">分享</radio>
-        <radio value="4">问答</radio>
-      </radio-group>
     </view>
     <view class="container">
       <input placeholder='输入内容' placeholder-style="color:#f6f6f6;" bindinput="bindKeyInput2"></input>
@@ -24,7 +20,14 @@
   </form>
 </view>
 <view wx:if = "{{tab == 'ask'}}">
-    问答页
+    <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='share-radio'>
+    </view>
+    <view class="container">
+      <input placeholder='输入内容' placeholder-style="color:#f6f6f6;" bindinput="bindKeyInput2"></input>
+    </view>
+    <button class='submit' bindtap='Addshare'>发布</button>
+  </form>
 </view>
 <view wx:if = "{{tab == 'job'}}">
   <view>招聘标题: <input class='txt' bindinput="titles"></input></view>

@@ -17,8 +17,7 @@
 
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
     <swiper-item>
-    <view class="detail-post-comment-list"  >
-        <block wx:for='{{postsList}}' wx:if='{{postsList.length>0}}'>
+     <view class="detail-post-comment-list" wx:for="{{postsList}}" wx:key="">
         <view index="{{index}}" id="{{item.id}}">
             <view class="detail-post-comment-avatar">
               <image class="detail-post-comment-avatar-img" mode="scaleToFill" src="http://localhost:1026{{ item.avatar_url }}"></image>
@@ -26,9 +25,10 @@
         </view>
             <view>{{item.loginname}}</view>
             <view>内容：{{item.content}}</view>
-            <view>发布时间：{{item.last_reply_at}}{{item.reply_at}}</view>
-            <view>已点赞<image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zanhl.png"></image></view>
-        </block>
+            <view>评论时间：{{item.reply_at}}</view>
+            <view>
+            已点赞<image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zanhl.png"></image>
+            </view>
 
         <block wx:if="{{detail.replies.length < 0}}">
           <view class="detail-post-comment-null">
@@ -40,7 +40,9 @@
   </swiper-item>
 
     <swiper-item>
-      <view>我是收藏
+      <view>
+      <import src="../common/list.wxml"/>
+      <template is="list" data="{{ postsList, hidden }}"/>
       </view>
     </swiper-item>
 
@@ -50,11 +52,48 @@
     </swiper-item>
 
     <swiper-item>
-      <view>我是tab4</view>
+  <view class="postslist">
+    <block wx:for="{{postsList}}"  wx:key="">
+      <view catchtap='visit' class="posts-list">
+        <navigator  url="/pages/detail/detail?id={{item.id}}">
+          <view class="posts-list-info" index="{{index}}">
+              <image class="userimg" src="http://localhost:1026{{item.avatar_url}}" />
+              <view class="item-box">
+                <view class="userinfo">
+                  <text class="username">{{item.loginname}}</text>
+                  <text  wx:if="{{item.whether === 0 }}" class="read">*</text>
+                </view>
+                <view class="posts-title">
+                  <text>{{item.content}}</text>
+                </view>
+                <view class="posts-contain">
+                  <text>{{item.title}}</text>
+                </view>
+              </view>
+          </view>
+      </navigator>
+      </view>
+    </block>
+  </view>
     </swiper-item>
 
   <swiper-item>
     <view class="about">
+    <navigator url="/pages/login/login" wx:if="{{islogin == false}}">
+      <view class="view-cell view-cell-line">
+        <view class="view-cell-primary">
+          <image class="view-img"   mode="scaleToFill" src="/images/icon/login.png" />
+          <text class="view-name">登录cnode</text>
+        </view>
+        <view class="view-cell-arrow"></view>
+        </view>
+      </navigator>
+      <view class="view-cell view-cell-line"  wx:if="{{islogin == true}}">
+        <view class="view-cell-primary">
+          <image class="view-img"  mode="scaleToFill" src="/images/icon/login.png" />
+          <text class="view-name">已登录cnode</text>
+        </view>
+      </view>
       <view class="about-item">
         <text class="about-item-title">关于CNODE社区</text>
         <text class="about-item-content">CNode社区为国内最大最具影响力的 .net 开源技术社区，致力于 .net 的技术研究</text>
@@ -72,21 +111,7 @@
         <text class="about-item-content ">V1.0.0 Beta</text>
       </view>
     </view>
-    <navigator url="/pages/login/login" wx:if="{{islogin == false}}">
-      <view class="view-cell view-cell-line">
-        <view class="view-cell-primary">
-          <image class="view-img"   mode="scaleToFill" src="/images/icon/login.png" />
-          <text class="view-name">登录cnode</text>
-        </view>
-        <view class="view-cell-arrow"></view>
-        </view>
-      </navigator>
-      <view class="view-cell view-cell-line"  wx:if="{{islogin == true}}">
-        <view class="view-cell-primary">
-          <image class="view-img"  mode="scaleToFill" src="/images/icon/login.png" />
-          <text class="view-name">已登录cnode</text>
-        </view>
-      </view>
+    
     </swiper-item>
   </swiper>
 </view>
