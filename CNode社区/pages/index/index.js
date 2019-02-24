@@ -92,7 +92,6 @@ Page({
   },
   //获取文章列表数据
   getData: function () {
-    console.log(this.data.id);
     var that = this;
     var tab = that.data.tab;
     var page = that.data.page;
@@ -120,7 +119,6 @@ Page({
       return;
     }
     Api.fetchGet(apiurl, (err, res) => {
-        console.log(res);
         //更新数据
         that.setData({
           postsList: that.data.postsList.concat(res.map(function (item) {
@@ -162,7 +160,7 @@ Page({
   swichNav: function (e) {
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
-      return false;
+      return;
     }
     else {
       that.setData({
@@ -171,6 +169,7 @@ Page({
     }
   },
   swiperChange: function (e) {
+    console.log(e.detail.current);
     this.setData({
       currentTab: e.detail.current,
     })

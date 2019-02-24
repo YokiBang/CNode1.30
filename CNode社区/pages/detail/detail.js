@@ -45,12 +45,12 @@ Page({
    //收藏文章
   collect: function(e) {
     var that = this;
-    var accesstoken = wx.getStorageSync('CuserInfo');
-    var id = e.currentTarget.id;
-    if (!id) {
-      that.setData({ modalHidden: false });
+    var accesstoken = wx.getStorageSync('CuserInfo').id;
+    if (!accesstoken) {
+      this.setData({ modalHidden: false });
       return;
     }
+    var id=e.currentTarget.id;
     var ApiUrl = Api.collect + '?author_id=' + accesstoken.id + '&active_id=' + id;
     Api.fetchGet(ApiUrl, (err, res) => {
       if(res){
@@ -76,14 +76,14 @@ Page({
   reply: function(e) {
     console.log(e);
     var that = this;
-    var accesstoken = wx.getStorageSync('CuserInfo');
+    var accesstoken = wx.getStorageSync('CuserInfo').id;
+    if (!accesstoken) {
+      this.setData({ modalHidden: false });
+      return;
+    }
     var id = e.currentTarget.id;
     var index = e.currentTarget.dataset.index;
     var ApiUrl = Api.zan + '?authorid=' + accesstoken.id + '&commentid=' + id;
-    if (!id) {
-      that.setData({ modalHidden: false });
-      return;
-    }
     Api.fetchGet(ApiUrl, (err, res) => {
       if (res) {
         var detail = that.data.detail;

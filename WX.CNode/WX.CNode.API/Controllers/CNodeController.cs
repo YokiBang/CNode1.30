@@ -31,12 +31,9 @@ namespace WX.CNode.API.Controllers
             List<Active> activelist = ActiveService.GetActiveList(tab, id);
 
             IRedisClient redisClient = RedisManager.GetClient();
-            if (activelist != redisClient.Get<List<Active>>("active"))
-            {
-                redisClient.Set<List<Active>>("active", activelist);
-                redisClient.Save();
-                redisClient.Dispose();
-            }
+            redisClient.Set<List<Active>>("active", activelist);
+            redisClient.Save();
+            redisClient.Dispose();
 
             return activelist;
         }
@@ -44,7 +41,7 @@ namespace WX.CNode.API.Controllers
         /// <summary>
         /// 获取动态的详情
         /// </summary>
-        /// <param name="id">动态的主键id</param>
+        /// <param name="activeid">动态的主键id</param>
         /// <returns>返回单条动态信息详情</returns>
         [HttpGet]
         public Active topic(int id)
@@ -114,10 +111,14 @@ namespace WX.CNode.API.Controllers
         /// <param name="Authorid">用户id</param>
         /// <returns></returns>
         [HttpGet]
-        public List<Active> GetCollectAuthorid(int Authorid)
+        public List<Active> GetCollectList(int Authorid)
         {
-            List<Active> actives = CollectService.GetCollectAuthorid(Authorid);
-            return actives;
+            List<Active> activelist = CollectService.GetCollectAuthorid(Authorid);
+            IRedisClient redisClient = RedisManager.GetClient();
+            redisClient.Set<List<Active>>("active", activelist);
+            redisClient.Save();
+            redisClient.Dispose();
+            return activelist;
         }
 
         /// <summary>
@@ -129,6 +130,10 @@ namespace WX.CNode.API.Controllers
         public List<Active> GetHistoryList(int roleid)
         {
             List<Active> activelist = CollectService.GetHistoryList(roleid);
+            IRedisClient redisClient = RedisManager.GetClient();
+            redisClient.Set<List<Active>>("active", activelist);
+            redisClient.Save();
+            redisClient.Dispose();
             return activelist;
         }
         /// <summary>
